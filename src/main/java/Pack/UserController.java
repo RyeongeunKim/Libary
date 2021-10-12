@@ -17,12 +17,12 @@ public class UserController {
 	
 	@RequestMapping("/login")
 	public String method01() {
-		return "login";
+		return "user/login";
 	}
 	
 	@RequestMapping("/join")
 	public String method02() {
-		return "join";
+		return "user/join";
 	}
 	
 	@RequestMapping("/main")
@@ -82,16 +82,6 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("/joinResult")
-	public String method06(Model model, UserDTO udto) {
-		UserDAO udao = new UserDAO();
-		udao.insert(udto);
-		model.addAttribute("userID", udto.getUserID());
-		model.addAttribute("userName", udto.getUserName());
-		model.addAttribute("userAge", udto.getUserAge());
-		return "joinResult";
-	}
-	
 	@RequestMapping("/idcheck")
 	public String method07(HttpServletRequest r, HttpServletResponse response) throws Exception {
 		// 한글처리
@@ -126,14 +116,14 @@ public class UserController {
 		String userID = (String) session.getAttribute("userID");
 		
 		if(userID == null || !userID.equals("admin")){
-			return "login";
+			return "user/login";
 		} 
 		
 		UserDAO udao = new UserDAO();
 		List userList = udao.userList(udto);
 		request.setAttribute("userList", userList);
 		
-		return "userList";
+		return "admin/userList";
 	}
 	
 }

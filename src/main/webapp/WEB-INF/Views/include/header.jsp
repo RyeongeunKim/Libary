@@ -92,8 +92,10 @@
 			<% } else if (session.getAttribute("userID") != null) {%>
 
 			<div class="col-md-3 text-end">
+				<button type="button" class="btn btn-outline-primary me-2"
+				onclick="location.href='myLibrary'">내서재</button>
 				<button type="button" class="btn btn-primary"
-				onclick="location.href='./logout' ">로그아웃</button>
+				onclick="location.href='./logout'">로그아웃</button>
 			</div>
 			<%} %>
 		</header>
