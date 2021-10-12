@@ -89,7 +89,7 @@ local.properties
 *.tar.gz
 *.rar
 
-### 사용자 정의
+### 사용자 정의 ###
 *.classpath
 *.project
 context.xml
