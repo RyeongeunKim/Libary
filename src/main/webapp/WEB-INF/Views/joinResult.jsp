@@ -8,9 +8,9 @@
 </head>
 <body>
 	<h1>회원가입 되었습니다</h1>
-	아이디 : ${id }<br>
-	이름 : ${name }<br>
-	나이 : ${age }<br>
+	아이디 : ${userId }<br>
+	이름 : ${userName }<br>
+	나이 : ${userAge }<br>
 	<a href="main">메인페이지로 가기</a>
 </body>
 </html>

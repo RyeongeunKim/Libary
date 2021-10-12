@@ -7,19 +7,19 @@
  <mapper namespace="Mapper">
  
   	<select id="test01" resultType="Pack.UserDTO">
- 		select pw from table04 where id=#{id} and pw=#{pw}
+ 		select userPwd from user where userID=#{userID} and userPwd=#{userPwd}
  	</select>
  	
    	<select id="test02" resultType="String">
- 		select * from table04 where id=#{id}
+ 		select * from user where userID=#{userID}
  	</select>
 
 	<insert id="test03" parameterType="Pack.UserDTO">
-		insert into table04(id, pw, name, age) values (#{id}, #{pw}, #{name}, #{age})
+		insert into user(userID, userPwd, userName, userAge) values (#{userID}, #{userPwd}, #{userName}, #{userAge})
 	</insert>
 	
 	<select id="test04" resultType="Pack.UserDTO">
-		select * from table04 where id != 'admin'
+		select * from user where userID != 'admin'
 	</select>
 
 </mapper>

@@ -56,7 +56,7 @@ public class UserController {
 		
 		// 아이디 정보를 session객체에 저장
 		HttpSession session = r.getSession();
-		session.setAttribute("id", udto.getId());
+		session.setAttribute("userID", udto.getUserID());
 		
 		// 페이지 이동
 		return "main";
@@ -86,9 +86,9 @@ public class UserController {
 	public String method06(Model model, UserDTO udto) {
 		UserDAO udao = new UserDAO();
 		udao.insert(udto);
-		model.addAttribute("id", udto.getId());
-		model.addAttribute("name", udto.getName());
-		model.addAttribute("age", udto.getAge());
+		model.addAttribute("userID", udto.getUserID());
+		model.addAttribute("userName", udto.getUserName());
+		model.addAttribute("userAge", udto.getUserAge());
 		return "joinResult";
 	}
 	
@@ -96,16 +96,16 @@ public class UserController {
 	public String method07(HttpServletRequest r, HttpServletResponse response) throws Exception {
 		// 한글처리
 		r.setCharacterEncoding("utf-8");
-		String id = r.getParameter("id").trim();
+		String userID = r.getParameter("userID").trim();
 		
-		System.out.println("ajax id 전송 : " + id);
+		System.out.println("ajax id 전송 : " + userID);
 		
 		UserDAO udao = new UserDAO();
 		
 		int check = 0;
 		
-		if(id != null) {
-			check = udao.idCheck(id);
+		if(userID != null) {
+			check = udao.idCheck(userID);
 		}
 		
 		System.out.println(check);
@@ -123,9 +123,9 @@ public class UserController {
 	public String method08(Model model, UserDTO udto, HttpServletRequest request) {
 
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
+		String userID = (String) session.getAttribute("userID");
 		
-		if(id == null || !id.equals("admin")){
+		if(userID == null || !userID.equals("admin")){
 			return "login";
 		} 
 		
