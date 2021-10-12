@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h1>회원가입</h1>
-	<form action="joinResult" method="post" id="form">
+	<form action="joinResult" method="post" id="form" name="form">
 		<div>
 			<div>	
 				아이디 <input type="text" id="userID" name="userID" placeholder="아이디를 입력해주세요">	
@@ -54,7 +54,7 @@
 		</div>
 		<div>
 			<div>	
-				핸드폰번호 <input type="text" name="userPhone" id="userPhone"  value="" placeholder="핸드폰번호를 입력해주세요">	
+				전화번호 <input type="text" name="userPhone" id="userPhone"  value="" placeholder="'-' 제외">	
 			</div>
 			<div>
 				<span class="ckMsg_phone"></span>
@@ -89,41 +89,55 @@
 			
 			if($.trim($("#userID").val()) == ""){
 				$('.ckMsg_id').text("아이디를 입력하세요");
+			    $('.ckMsg_id').css("color","red"); 
+				$("#userID").focus();
 				return false;
 			}
 			
 			if($.trim($("#userPwd").val()) == ""){
 				$('.ckMsg_pw').text("비밀번호를 입력하세요");
+				$('.ckMsg_pw').css("color","red"); 
+				$("#userPwd").focus();
 				return false;
 			}
 			
 			if($.trim($("#userPwd1").val()) == ""){
 				$('.ckMsg_pw1').text("비밀번호 확인을 입력하세요");
+				$('.ckMsg_pw1').css("color","red"); 
+				$("#userPwd1").focus();
 				return false;
 			}	
 			
 			if($.trim($("#userName").val()) == ""){
 				$('.ckMsg_name').text("이름을 입력하세요");
+				$('.ckMsg_name').css("color","red"); 
+				$("#userName").focus();
 				return false;
 			}		
 			
 			if($.trim($("#userAge").val()) == ""){
 				$('.ckMsg_age').text("나이를 입력하세요");
+				$('.ckMsg_age').css("color","red"); 
+				$("#userAge").focus();
 				return false;
 			}		
 			
 			if($.trim($("#userPhone").val()) == ""){
-				$('.ckMsg_age').text("핸드폰번호를 입력하세요");
+				$('.ckMsg_phone').text("전화번호를 입력하세요");
+				$('.ckMsg_phone').css("color","red"); 
+				$("#userPhone").focus();
 				return false;
 			}		
 			
-			if($.trim($("#userPhone").val()) == ""){
-				$('.ckMsg_age').text("주소를 입력하세요");
-				return false;
-			}				
+// 			if($.trim($("#userAddress").val()) == ""){
+// 				$('.ckMsg_address').text("주소를 입력하세요");
+// 				$('.ckMsg_phone').css("color","red"); 
+// 				$("#userAddress").focus();
+// 				return false;
+// 			}				
 			
 			if(ck1 == false || ck2 == false || ck3 == false 
-				|| ck4 == false || ck5 == false || ck6 == false || ck7 == false){
+				|| ck4 == false || ck5 == false || ck6 == false){
 				return false;
 				}
 			}); // form 공백체크
@@ -135,17 +149,20 @@
 				$.ajax({
 						url : './idcheck',
 						type : 'post',
-						data : {"userID" : id},
+						data : {"userID" : userID},
 						success : function(data) {
 							
 						if (data > 0) {
 							$('.ckMsg_id').text("이미 존재하는 아이디입니다");
+							$('.ckMsg_id').css("color","red"); 
 							ck1 = false;} 
 						else {
-							if (id.match(check) != null) {
+							if (userID.match(check) != null) {
 								$('.ckMsg_id').text("사용가능한 아이디입니다");
+								$('.ckMsg_id').css("color","green");
 								ck1 = true;}
 							else {$('.ckMsg_id').text("아이디는 4~15자리만 가능합니다");
+								  $('.ckMsg_id').css("color","red"); 
 								  ck1 = false;}
 							}
 						 },
@@ -154,21 +171,27 @@
 			});//id 중복확인 
 			
 			$("#userPwd").keyup(function(){
-				var pw = $("#userPwd").val();
+				var userPwd = $("#userPwd").val();
 				var check = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/
 					.test(userPwd);	
 				
 				if(userPwd == null){
 					$('.ckMsg_pw').text(
 						"비밀번호를 입력하세요");
+					$('.ckMsg_pw').css("color",
+					"red");
 					ck2 = false;
 				} else if(check) {
 					$('.ckMsg_pw').text(
 					"사용 가능한 비밀번호입니다");	
+					$('.ckMsg_pw').css("color",
+					"green");
 					ch2 = true;
 				} else {
 					$('.ckMsg_pw')
-					.text("대소문자,숫자,특수문자(@$!%*#?&) 세가지를 조합한 8~16자리를 입력하세요");			
+					.text("대소문자,숫자,특수문자(@$!%*#?&) 세가지를 조합한 8~16자리를 입력하세요");		
+					$('.ckMsg_pw').css("color",
+					"red");
 					ck2 = false;
 				}
 			}); //pw
@@ -179,10 +202,14 @@
 						.val()) {
 					$('.ckMsg_pw1').text(
 							"비밀번호가 일치하지 않습니다");
+					$('.ckMsg_pw1').css("color",
+					"red");
 					ck3 = false;
 				} else {
 					$('.ckMsg_pw1').text(
 							"비밀번호가 일치합니다");
+					$('.ckMsg_pw1').css("color",
+					"green");
 					ck3 = true;
 				}
 			}); //pw1 (pw확인)
@@ -198,6 +225,8 @@
 				} else {
 					$('.ckMsg_name').text(
 							"이름을 정확히 입력하세요");
+					$('.ckMsg_name').css("color",
+					"red");
 					ck4 = false;
 				}
 			});//name
@@ -209,13 +238,37 @@
 				if(isNaN(userAge) == true){
 					$('.ckMsg_age').text(
 					"나이를 정확히 입력하세요");
+					$('.ckMsg_age').css("color",
+					"red");
 					ck5 = false;
 				} else {
 					$('.ckMsg_age').text("");
 					ck5 = true;					
 				}
 
-			});//name
+			});//age
+			
+			$("#userPhone").keyup(function() {
+
+				var userPhone = $("#userPhone").val();
+				var check1 = /^010([0-9]{8})$/;
+				var check2 = /^01([1|6|7|8|9])([0-9]{3})([0-9]{4})$/;
+				if (userPhone.match(check1) != null
+						|| userPhone.match(check2) != null) {
+					$('.ckMsg_phone').text("");
+					ck5 = true;
+				} else {
+					$('.ckMsg_phone').text(
+							"연락처를 확인해주세요");
+					$('.ckMsg_phone').css(
+							"color", "red");
+					$('.ckMsg_phone').css(
+							"padding-left",
+							"5px");
+					ck5 = false;
+				}
+
+		});//phone
 	}); //form
 	</script>
 </body>
