@@ -15,14 +15,18 @@
 			<th>패스워드</th>	
 			<th>이름</th>	
 			<th>나이</th>	
+			<th>전화번호</th>	
+			<th>주소</th>	
 		</tr>
 		<c:forEach var="i" items="${ userList }">	
-			<c:if test="${i.id != null}">
+			<c:if test="${i.userID != null}">
 				<tr>
-					<td>${i.id}</td>
-					<td>${i.pw}</td>					
-					<td>${i.name}</td>					
-					<td>${i.age}</td>		
+					<td>${i.userID}</td>
+					<td>${i.userPwd}</td>					
+					<td>${i.userName}</td>					
+					<td>${i.userAge}</td>		
+					<td>${i.userPhone}</td>		
+					<td>${i.userAddress}</td>		
 				</tr>
 			</c:if>
 		</c:forEach>	

@@ -1,34 +1,54 @@
 package Pack;
 
 public class UserDTO {
-	private String id;
-	private String pw;
-	private String name;
-	private int age;
-
-	public String getId() {
-		return id;
+	private String userID;
+	private String userPwd;
+	private String userName;
+	private int userAge;
+	private String userPhone;
+	private String userAddress;
+	
+	public String getUserID() {
+		return userID;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
-	public String getPw() {
-		return pw;
+	public String getUserPwd() {
+		return userPwd;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setUserPwd(String userPwd) {
+		this.userPwd = userPwd;
 	}
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public int getAge() {
-		return age;
+	public int getUserAge() {
+		return userAge;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setUserAge(int userAge) {
+		this.userAge = userAge;
+	}
+	public String getUserPhone() {
+		return userPhone;
+	}
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
+	}
+	public String getUserAddress() {
+		return userAddress;
+	}
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
+	
+	@Override
+	public String toString() {
+		return "UserDTO [userID=" + userID + ", userPwd=" + userPwd + ", userName=" + userName + ", userAge=" + userAge
+				+ ", userPhone=" + userPhone + ", userAddress=" + userAddress + "]";
 	}
 	
 	

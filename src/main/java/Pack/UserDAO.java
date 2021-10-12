@@ -21,8 +21,8 @@ public class UserDAO {
 		
 		SqlSession session = ssf.openSession();
 		int check = -1;
-		List<String> pw = session.selectList("test01", udto);
-		if(pw.size() == 1) {
+		List<String> userPwd = session.selectList("test01", udto);
+		if(userPwd.size() == 1) {
 			check = 1;
 		} else {
 			check = 0;
@@ -41,11 +41,11 @@ public class UserDAO {
 			} finally { session.close(); }
 	}
 	
-	int idCheck(String id) {
+	int idCheck(String userID) {
 		
 		SqlSession session = ssf.openSession();
 		int check = 0;
-		List<String> mm = session.selectList("test02", id);
+		List<String> mm = session.selectList("test02", userID);
 		System.out.println(mm.size());
 		if(mm.size() > 0) {
 			check = 1; // 아이디 있음 사용X

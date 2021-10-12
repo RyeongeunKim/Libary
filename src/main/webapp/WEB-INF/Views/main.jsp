@@ -11,7 +11,24 @@
 	<%@ include file="include/header.jsp" %>
 	<!-- Header Section End -->
 	
-	<h1>메인</h1>
+	<!-- Page Add Section Begin -->
+    <section class="page-add" style="margin-bottom: 200px;">
+        <div class="container">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+	
+	<form action="#" method="post">
+    도서검색 <input type="search" name="search">
+    <input type="submit">
+	</form>
+	
+	<!-- Page Add Section Begin -->
+    <section class="page-add" style="margin-bottom: 200px;">
+        <div class="container">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
 	
 	<!-- Footer Section Begin -->
 	<%@ include file="include/footer.jsp" %>

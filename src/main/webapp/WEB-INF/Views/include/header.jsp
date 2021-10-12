@@ -24,7 +24,7 @@
   <body>
   
   	<%
-		String id = (String)session.getAttribute("id");
+		String userID = (String)session.getAttribute("userID");
 	%>
   
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -65,20 +65,16 @@
 			<a href="/"
 				class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
 				<svg class="bi me-2" width="40" height="32">
-					<use xlink:href="#bootstrap" /></svg> <span class="fs-4">Dream
-					Office</span>
+					<use xlink:href="#bootstrap" /></svg> <span class="fs-4">부산광역시립해운대도서관</span>
 			</a>
 
 			<ul
 				class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-				<li><a href="main" class="nav-link px-2 link-secondary">Home</a></li>
-				<li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-				<li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-				<li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-				<li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+				<li><a href="#" class="nav-link px-2 link-dark">도서관소개</a></li>
+				<li><a href="#" class="nav-link px-2 link-dark">신청예약</a></li>
 			</ul>
 			<%
-				if(session.getAttribute("id") == null){
+				if(session.getAttribute("userID") == null){
 			%>
 			<div class="col-md-3 text-end">
 				<button type="button" class="btn btn-outline-primary me-2"
@@ -86,14 +82,14 @@
 				<button type="button" class="btn btn-primary"
 				onclick="location.href='join'">회원가입</button>
 			</div>
-			<%} else if (id != null && id.equals("admin")) {%>
+			<%} else if (userID != null && userID.equals("admin")) {%>
 			<div class="col-md-3 text-end">
 				<button type="button" class="btn btn-outline-primary me-2"
 				onclick="location.href='userList'">회원목록</button>
 				<button type="button" class="btn btn-primary"
 				onclick="location.href='./logout' ">로그아웃</button>
 			</div>
-			<% } else if (session.getAttribute("id") != null) {%>
+			<% } else if (session.getAttribute("userID") != null) {%>
 
 			<div class="col-md-3 text-end">
 				<button type="button" class="btn btn-primary"

@@ -14,7 +14,7 @@
 	<form action="joinResult" method="post" id="form">
 		<div>
 			<div>	
-				아이디 <input type="text" id="id" name="id" placeholder="아이디를 입력해주세요">	
+				아이디 <input type="text" id="userID" name="userID" placeholder="아이디를 입력해주세요">	
 			</div>
 			<div>
 				<span class="ckMsg_id"></span>
@@ -22,7 +22,7 @@
 		</div>
 		<div>
 			<div>	
-				비밀번호 <input type="password" id="pw"  name="pw" value="" placeholder="비밀번호를 입력해주세요">	
+				비밀번호 <input type="password" id="userPwd"  name="userPwd" value="" placeholder="비밀번호를 입력해주세요">	
 			</div>
 			<div>
 				<span class="ckMsg_pw"></span>
@@ -30,7 +30,7 @@
 		</div>
 		<div>
 			<div>	
-				비밀번호 확인 <input type="password" id="pw1"  name="pwConfirm" value="" placeholder="비밀번호 확인">	
+				비밀번호 확인 <input type="password" id="userPwd1"  name="pwConfirm" value="" placeholder="비밀번호 확인">	
 			</div>
 			<div>
 				<span class="ckMsg_pw1"></span>
@@ -38,7 +38,7 @@
 		</div>		
 		<div>
 			<div>	
-				이름 <input type="text" name="name" id="name"  value="" placeholder="이름을 입력해주세요">	
+				이름 <input type="text" name="userName" id="userName"  value="" placeholder="이름을 입력해주세요">	
 			</div>
 			<div>
 				<span class="ckMsg_name"></span>
@@ -46,67 +46,96 @@
 		</div>
 		<div>
 			<div>	
-				나이 <input type="text" name="age" id="age"  value="" placeholder="나이를 입력해주세요">	
+				나이 <input type="text" name="userAge" id="userAge"  value="" placeholder="나이를 입력해주세요">	
 			</div>
 			<div>
 				<span class="ckMsg_age"></span>
 			</div>
-		<p><input type="submit" value="회원가입"></p>
-		</div>		
-		
+		</div>
+		<div>
+			<div>	
+				핸드폰번호 <input type="text" name="userPhone" id="userPhone"  value="" placeholder="핸드폰번호를 입력해주세요">	
+			</div>
+			<div>
+				<span class="ckMsg_phone"></span>
+			</div>
+		</div>
+		<div>
+			<div>	
+				주소 <input type="text" name="userAddress" id="userAddress"  value="" placeholder="주소를 입력해주세요">	
+			</div>
+			<div>
+				<span class="ckMsg_address"></span>
+			</div>
+		</div>
+		<div>
+			<input type="submit" value="회원가입">
+		</div>	
 	</form>
 	
 	<!-- 유효성 체크 시작 -->
 	<script type="text/javascript">
 	$(document).ready(function(){
 		
-		var ch1 = false; //id
-		var ch2 = false; //pw
-		var ch3 = false; //pw1
- 		var ch4 = false; //name
- 		var ch5 = false; //age
+		var ch1 = false; //userID
+		var ch2 = false; //userPwd
+		var ch3 = false; //userPwd1
+ 		var ch4 = false; //userName
+ 		var ch5 = false; //userAge
+ 		var ch6 = false; //userPhone
+ 		var ch7 = false; //userAddress
 		
 		$("#form").submit(function(){
 			
-			if($.trim($("#id").val()) == ""){
+			if($.trim($("#userID").val()) == ""){
 				$('.ckMsg_id').text("아이디를 입력하세요");
 				return false;
 			}
 			
-			if($.trim($("#pw").val()) == ""){
+			if($.trim($("#userPwd").val()) == ""){
 				$('.ckMsg_pw').text("비밀번호를 입력하세요");
 				return false;
 			}
 			
-			if($.trim($("#pw1").val()) == ""){
+			if($.trim($("#userPwd1").val()) == ""){
 				$('.ckMsg_pw1').text("비밀번호 확인을 입력하세요");
 				return false;
 			}	
 			
-			if($.trim($("#name").val()) == ""){
+			if($.trim($("#userName").val()) == ""){
 				$('.ckMsg_name').text("이름을 입력하세요");
 				return false;
 			}		
 			
-			if($.trim($("#age").val()) == ""){
+			if($.trim($("#userAge").val()) == ""){
 				$('.ckMsg_age').text("나이를 입력하세요");
+				return false;
+			}		
+			
+			if($.trim($("#userPhone").val()) == ""){
+				$('.ckMsg_age').text("핸드폰번호를 입력하세요");
+				return false;
+			}		
+			
+			if($.trim($("#userPhone").val()) == ""){
+				$('.ckMsg_age').text("주소를 입력하세요");
 				return false;
 			}				
 			
 			if(ck1 == false || ck2 == false || ck3 == false 
-				|| ck4 == false || ck5 == false){
+				|| ck4 == false || ck5 == false || ck6 == false || ck7 == false){
 				return false;
 				}
 			}); // form 공백체크
 			
-			$("#id").keyup(function() {
-				var id = $("#id").val();
+			$("#userID").keyup(function() {
+				var userID = $("#userID").val();
 				var check = /^[A-Za-z\d_-]{4,15}$/;
 				
 				$.ajax({
 						url : './idcheck',
 						type : 'post',
-						data : {"id" : id},
+						data : {"userID" : id},
 						success : function(data) {
 							
 						if (data > 0) {
@@ -124,12 +153,12 @@
 				});
 			});//id 중복확인 
 			
-			$("#pw").keyup(function(){
-				var pw = $("#pw").val();
+			$("#userPwd").keyup(function(){
+				var pw = $("#userPwd").val();
 				var check = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/
-					.test(pw);	
+					.test(userPwd);	
 				
-				if(pw == null){
+				if(userPwd == null){
 					$('.ckMsg_pw').text(
 						"비밀번호를 입력하세요");
 					ck2 = false;
@@ -144,9 +173,9 @@
 				}
 			}); //pw
 			
-			$("#pw1").keyup(function() {
+			$("#userPwd1").keyup(function() {
 
-				if ($("#pw").val() != $("#pw1")
+				if ($("#userPwd").val() != $("#userPwd1")
 						.val()) {
 					$('.ckMsg_pw1').text(
 							"비밀번호가 일치하지 않습니다");
@@ -158,12 +187,12 @@
 				}
 			}); //pw1 (pw확인)
 			
-			$("#name").keyup(function() {
+			$("#userName").keyup(function() {
 
-				var name = $("#name").val();
+				var userName = $("#userName").val();
 				var check = /^[A-Z|a-z|가-힣]{2,5}$/;
 				
-				if (name.match(check) != null) {
+				if (userName.match(check) != null) {
 					$('.ckMsg_name').text("");
 					ck4 = true;
 				} else {
@@ -173,11 +202,11 @@
 				}
 			});//name
 			
-			$("#age").keyup(function() {
+			$("#userAge").keyup(function() {
 
-				var age = $("#age").val(); 
+				var userAge = $("#userAge").val(); 
 				
-				if(isNaN(age) == true){
+				if(isNaN(userAge) == true){
 					$('.ckMsg_age').text(
 					"나이를 정확히 입력하세요");
 					ck5 = false;
