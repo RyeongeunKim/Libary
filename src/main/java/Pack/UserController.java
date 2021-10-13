@@ -108,6 +108,14 @@ public class UserController {
 		
 		return null;
 	}	
+
+	@RequestMapping("/joinResult")
+	public String method06(Model model, UserDTO udto) {
+		System.out.println(udto + "컨트롤러");
+		UserDAO udao = new UserDAO();
+		udao.insert(udto);
+		return "user/login";
+	}
 	
 	@RequestMapping("/userList")
 	public String method08(Model model, UserDTO udto, HttpServletRequest request) {
@@ -124,6 +132,11 @@ public class UserController {
 		request.setAttribute("userList", userList);
 		
 		return "admin/userList";
+	}
+	
+	@RequestMapping("/jusoPopup")
+	public String method09() {
+		return "user/jusoPopup";
 	}
 	
 }
