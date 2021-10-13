@@ -15,7 +15,8 @@
  	</select>
 
 	<insert id="test03" parameterType="Pack.UserDTO">
-		insert into user(userID, userPwd, userName, userAge) values (#{userID}, #{userPwd}, #{userName}, #{userAge})
+		insert into user(userID, userPwd, userName, userAge, userPhone, userAddress)
+		 values (#{userID}, #{userPwd}, #{userName}, #{userAge}, #{userPhone}, #{userAddress})
 	</insert>
 	
 	<select id="test04" resultType="Pack.UserDTO">
