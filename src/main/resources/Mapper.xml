@@ -34,5 +34,36 @@
 	<select id="test07" resultType="Pack.BookDTO" parameterType="String">
 		select * from book where bookPublisher like CONCAT('%',#{keyword},'%')
 	</select>
+	
+		<select id="test08" resultType="Pack.RentalDTO" parameterType="String">
+		select * from rental where userID=#{userID} and rentalKey!=1
+	</select>	
+	
+	<select id="test09" resultType="Pack.RentalDTO" parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookName = r.rentalBookName where userID=#{userID} and rentalKey=1;
+	</select>
+		
+	<select id="test10" resultType="Pack.BookDTO" parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookName = r.rentalBookName where userID=#{userID} and rentalKey=1;
+	</select>	
+	
+	<select id="userData" resultType="Pack.UserDTO">
+		select * from user where userID=#{userID}
+	</select>
+	
+	<update id="userUpdate" parameterType="Pack.UserDTO">
+		update user set
+		userPwd = #{userPwd},
+		userName = #{userName},
+		userAge = #{userAge},
+		userPhone = #{userPhone},
+		userAddress =#{userAddress} 
+		where userID=#{userID}
+	</update>
+	
+	<delete id="userDelete" parameterType="Pack.UserDTO">
+		delete from user where userID=#{userID}
+	</delete>
+	
 
 </mapper>
