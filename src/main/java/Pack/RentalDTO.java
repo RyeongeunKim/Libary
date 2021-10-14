@@ -8,12 +8,28 @@ public class RentalDTO {
 	private Date rentalDate;
 	private String rentalUserID;
 	private String rentalBookName;
+	private int rentalKey;
+	private String userID;
 	
 	public int getRentalID() {
 		return rentalID;
 	}
 	public void setRentalID(int rentalID) {
 		this.rentalID = rentalID;
+	}
+	
+
+	public int getRentalKey() {
+		return rentalKey;
+	}
+	public void setRentalKey(int rentalKey) {
+		this.rentalKey = rentalKey;
+	}
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 	public Date getReturnDate() {
 		return returnDate;

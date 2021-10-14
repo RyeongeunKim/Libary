@@ -30,6 +30,24 @@ public class UserController {
 		return "main";
 	}
 	
+	/////////////////////////
+	
+//	@RequestMapping("/myLibrary")
+//	public String myLibrary() {
+//		return "user/myLibrary";
+//	}
+	
+	@RequestMapping("/reEnter")
+	public String reEnter() {
+		return "user/rePassword";
+	}
+	
+	
+	
+	////////////////////////////////////
+	
+	
+	
 	@RequestMapping("/loginGo")
 	public String method04(Model model, UserDTO udto, 
 			HttpServletRequest r, HttpServletResponse response) {
@@ -138,5 +156,103 @@ public class UserController {
 	public String method09() {
 		return "user/jusoPopup";
 	}
+	
+	
+	//////////////////////////////////////////
+	
+	@RequestMapping("/userRead") // 회원 정보읽어오기
+	public String userDataRead(Model model, HttpServletRequest req, UserDTO udto) {
+		System.out.println(1);
+		HttpSession session = req.getSession();
+		String userID = (String) session.getAttribute("userID");
+		
+		
+		UserDAO udao = new UserDAO();
+		udto = udao.userDataRead(userID); 
+		
+		model.addAttribute("userData", udto); 
+		
+		return "user/userUpdateForm";
+	}
+	
+	@RequestMapping("/reConfirm") // 비밀번호 재확인
+	public void reConfirm(Model model, UserDTO udto, HttpServletRequest req, HttpServletResponse response) {
+		System.out.println(5);
+		HttpSession session = req.getSession();
+		String userID = (String) session.getAttribute("userID");
+		UserDAO udao = new UserDAO();
+		udto = udao.userPwdData(userID); 
+		
+		String originPW = udto.getUserPwd(); // db값
+		String rePW = req.getParameter("userPwd"); // 입력값 
+		
+		response.setContentType("text/html; charset=utf-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+
+				if(originPW.equals(rePW)) {
+					out.print("<script>");
+					out.print("location.href='userRead';");//정보수정 이동
+					out.print("</script>");
+				}else { // 틀렷습니다 팝업창
+					out.print("<script>");
+					out.print(" alert('비밀번호가 맞지 않습니다');");
+					out.print("location.href=' ./';");
+					out.print("</script>");
+					out.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+	}
+	
+	
+	@RequestMapping("/userUpdate") // 회원 정보 수정
+	public String userUpdate(HttpServletRequest req, UserDTO udto) {
+		System.out.println(2);
+		HttpSession session = req.getSession();
+		String userID = (String) session.getAttribute("userID");
+		UserDAO udao = new UserDAO();
+		udto = udao.userDataRead(userID); 
+		
+		
+		String sPw = udto.getUserPwd(); 
+		String sPw01 = req.getParameter("userPwd"); 
+		
+		if(!sPw.equals(sPw01)) { 
+			udto.setUserPwd(sPw01);
+		}
+		udto.setUserName(req.getParameter("userName"));
+		udto.setUserAge(Integer.parseInt(req.getParameter("userAge")));
+		udto.setUserPhone(req.getParameter("userPhone"));
+		udto.setUserAddress(req.getParameter("userAddress"));
+		
+		udao.userUpdate(udto,userID);
+		
+		return "main";
+	}
+	
+	
+	
+	@RequestMapping("/deleteUser") // 회원 탈퇴
+	public String userDelete(HttpServletRequest req, UserDTO udto) {
+		System.out.println(3);
+		HttpSession session = req.getSession();
+		String userID = (String) session.getAttribute("userID");
+		System.out.println(userID);
+		try {
+			UserDAO udao = new UserDAO();
+			udao.deleteUser(userID);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.invalidate();
+		}
+		return "main";
+	}
+	
+	
 
 }

@@ -63,5 +63,67 @@ public class UserDAO {
 		session.close();
 		return mm;
 	}
+	
+//	======================================================================
+	public UserDTO userDataRead(String userID) { 
+		SqlSession session = ssf.openSession();
+		UserDTO ud = null;
+//		System.out.println(udto.getUserID());
+		
+		try {
+			 ud= session.selectOne("userData", userID);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return ud;
+	}
+	
+	public UserDTO userPwdData(String userID) {  // 비밀번호 재확인
+		SqlSession session = ssf.openSession();
+		UserDTO ud = null;
+//		System.out.println(udto.getUserID());
+		
+		try {
+			ud= session.selectOne("userData", userID);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return ud;
+	}
+	
+	
+	void userUpdate(UserDTO udto,String userID) { 
+		SqlSession session = ssf.openSession();
+		try {
+			int result = session.update("userUpdate", udto);
+			if(result > 0) session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
+	
+	void deleteUser(String userID) { 
+		SqlSession session = ssf.openSession();
+		try {
+			 int result= session.delete("userDelete", userID);
+			 if(result > 0) session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+	}
+//	===================================================================
+	
+	
 
 }
