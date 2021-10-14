@@ -6,7 +6,15 @@ public class BookDTO {
 	private String bookName;
 	private String bookCategory;
 	private String bookPublisher;
+	private String bookImage;
 	
+	
+	public String getBookImage() {
+		return bookImage;
+	}
+	public void setBookImage(String bookImage) {
+		this.bookImage = bookImage;
+	}
 	public int getBookID() {
 		return bookID;
 	}
@@ -40,9 +48,9 @@ public class BookDTO {
 	@Override
 	public String toString() {
 		return "BookDTO [bookID=" + bookID + ", bookWriter=" + bookWriter + ", bookName=" + bookName + ", bookCategory="
-				+ bookCategory + ", bookPublisher=" + bookPublisher + "]";
+				+ bookCategory + ", bookPublisher=" + bookPublisher + ", bookImage=" + bookImage + "]";
 	}
-	
+
 	
 	
 }
