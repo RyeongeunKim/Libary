@@ -16,5 +16,6 @@
 		<input type="submit" value="확인"  onclick="javascript: form.action='bookInsert'">
 	</form>
 
+
 </body>
 </html>
