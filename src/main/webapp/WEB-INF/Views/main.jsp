@@ -17,12 +17,19 @@
         </div>
     </section>
     <!-- Page Add Section End -->
-	
-	<form action="#" method="post">
-    도서검색 <input type="search" name="search">
-    <input type="submit">
-	</form>
-	
+    
+ 	<form mathod="post" action="search">
+		<div>
+ 			<select name="bookInfo">
+				<option value="bookName">서명</option>
+				<option value="bookWriter">저자</option>
+				<option value="bookPublisher">출판사</option>
+			</select> 
+			<input type="text" name="keyword">			
+			<input type="submit" value="검색">
+		</div>    	
+    </form>
+    
 	<!-- Page Add Section Begin -->
     <section class="page-add" style="margin-bottom: 200px;">
         <div class="container">
