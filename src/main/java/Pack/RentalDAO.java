@@ -19,15 +19,17 @@ public class RentalDAO {
 	}
 
 	// 대출중도서
-	List rentaling(RentalDTO rdto, String userID){
+	Vector rentaling(RentalDTO rdto, BookDTO bdto, String userID){
 	      SqlSession session = ssf.openSession();
 	      List<RentalDTO> mm = session.selectList("test08", userID);
-
+	      List<BookDTO> mm2 = session.selectList("test8", userID);
+	      Vector total = new Vector();
+	      total.add(mm);
+	      total.add(mm2);
 	      session.close();
-	      return mm;
+	      return total;
 	   }
 
-	
 	
 	// 대출이력1
 	Vector rentalHistory(RentalDTO rdto, BookDTO bdto, String userID){

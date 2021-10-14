@@ -15,14 +15,18 @@ public class RentalController {
 
 	// 대출중도서
 	@RequestMapping("/myLibrary")
-	public String method02(Model model, RentalDTO rdto, HttpServletRequest request) {
+	public String method02(Model model, RentalDTO rdto, BookDTO bdto, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String userID = (String) session.getAttribute("userID");
 
 		RentalDAO rdao = new RentalDAO();
-		List rentaling = rdao.rentaling(rdto, userID);
+		
+		Vector totalList = new Vector();
+		totalList = rdao.rentaling(rdto, bdto, userID);
 
-		request.setAttribute("rentaling", rentaling);
+		request.setAttribute("rentalList", totalList.get(0));
+		request.setAttribute("bookList", totalList.get(1));
+
 
 		return "rental/myLibrary";
 	}
