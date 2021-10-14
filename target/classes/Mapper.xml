@@ -22,5 +22,17 @@
 	<select id="test04" resultType="Pack.UserDTO">
 		select * from user where userID != 'admin'
 	</select>
+	
+	<select id="test05" resultType="Pack.BookDTO" parameterType="String">
+		select * from book where bookWriter like CONCAT('%',#{keyword},'%')
+	</select>
+	
+	<select id="test06" resultType="Pack.BookDTO" parameterType="String">
+		select * from book where bookName like CONCAT('%',#{keyword},'%')
+	</select>
+	
+	<select id="test07" resultType="Pack.BookDTO" parameterType="String">
+		select * from book where bookPublisher like CONCAT('%',#{keyword},'%')
+	</select>
 
 </mapper>
