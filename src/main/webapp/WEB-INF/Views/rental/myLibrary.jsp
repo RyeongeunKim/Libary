@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.List"%>
+<%@ page import="Pack.RentalDTO"%>
+<%@ page import="Pack.BookDTO"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +42,10 @@
 			<!-- Header Section End -->
 		</div>
 
-
+<%
+	List rentalList = (List)request.getAttribute("reantalList");
+	List bookList = (List)request.getAttribute("bookList");
+%>
 
 
 		<div>
@@ -58,8 +66,8 @@
 
 			<div class="right">
 				<ul>
-					<c:forEach var="i" items="${ rentaling }">
-						<li>책 이름 : ${i.rentalBookName} 청구기호 : ${i.rentalID} 대출일 :
+					<c:forEach var="i" items="${ rentalList }" varStatus="deo">
+						<li>책 이름 : ${bookList[deo.index].bookName} 청구기호 : ${i.rentalID} 대출일 :
 							${i.returnDate} 반납일 : ${i.rentalDate}</li>
 
 					</c:forEach>

@@ -4,38 +4,22 @@ import java.sql.Date;
 
 public class RentalDTO {
 	private int rentalID;
-	private Date returnDate;
+	private int rentalBookID;
 	private Date rentalDate;
+	private Date returnDate;
 	private String rentalUserID;
-	private String rentalBookName;
 	private int rentalKey;
-	private String userID;
-	
 	public int getRentalID() {
 		return rentalID;
 	}
 	public void setRentalID(int rentalID) {
 		this.rentalID = rentalID;
 	}
-	
-
-	public int getRentalKey() {
-		return rentalKey;
+	public int getRentalBookID() {
+		return rentalBookID;
 	}
-	public void setRentalKey(int rentalKey) {
-		this.rentalKey = rentalKey;
-	}
-	public String getUserID() {
-		return userID;
-	}
-	public void setUserID(String userID) {
-		this.userID = userID;
-	}
-	public Date getReturnDate() {
-		return returnDate;
-	}
-	public void setReturnDate(Date returnDate) {
-		this.returnDate = returnDate;
+	public void setRentalBookID(int rentalBookID) {
+		this.rentalBookID = rentalBookID;
 	}
 	public Date getRentalDate() {
 		return rentalDate;
@@ -43,24 +27,29 @@ public class RentalDTO {
 	public void setRentalDate(Date rentalDate) {
 		this.rentalDate = rentalDate;
 	}
+	public Date getReturnDate() {
+		return returnDate;
+	}
+	public void setReturnDate(Date returnDate) {
+		this.returnDate = returnDate;
+	}
 	public String getRentalUserID() {
 		return rentalUserID;
 	}
 	public void setRentalUserID(String rentalUserID) {
 		this.rentalUserID = rentalUserID;
 	}
-	public String getRentalBookName() {
-		return rentalBookName;
+	public int getRentalKey() {
+		return rentalKey;
 	}
-	public void setRentalBookName(String rentalBookName) {
-		this.rentalBookName = rentalBookName;
+	public void setRentalKey(int rentalKey) {
+		this.rentalKey = rentalKey;
 	}
 	@Override
 	public String toString() {
-		return "RentalDTO [rentalID=" + rentalID + ", returnDate=" + returnDate + ", rentalDate=" + rentalDate
-				+ ", rentalUserID=" + rentalUserID + ", rentalBookName=" + rentalBookName + "]";
+		return "RentalDTO [rentalID=" + rentalID + ", rentalBookID=" + rentalBookID + ", rentalDate=" + rentalDate
+				+ ", returnDate=" + returnDate + ", rentalUserID=" + rentalUserID + ", rentalKey=" + rentalKey + "]";
 	}
-	
 	
 	
 }

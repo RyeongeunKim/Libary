@@ -68,7 +68,7 @@
 						<c:forEach var="i" items="${ bookList }" varStatus="deo">
 
 							<li>
-							책 이름 : ${rentalList[deo.index].rentalBookName} 
+							책 이름 : ${i.bookName} 
 							저자 : ${i.bookWriter} 
 							출판사 : ${i.bookPublisher} 
 							카테고리 : ${i.bookCategory} 
