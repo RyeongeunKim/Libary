@@ -32,5 +32,6 @@
 		</c:forEach>	
 	</table>
 	<p><a href="main">메인페이지로 가기</a></p>
+	<p><a href="booklist">도서 리스트</a></p>
 </body>
 </html>
