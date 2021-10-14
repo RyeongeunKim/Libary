@@ -51,6 +51,33 @@
 		select * from user where userID=#{userID}
 	</select>
 	
+	<!-- /////////////////경도////////////////// -->
+	
+	<select id="test11" resultType="Pack.BookDTO">
+		select * from book
+	</select>
+	
+	<delete id="test12" parameterType="Pack.BookDTO">
+		DELETE FROM book WHERE bookID = #{bookID}
+	</delete>
+	
+	<insert id="test13" parameterType="Pack.BookDTO">
+		insert into book(bookWriter, bookName, bookCategory, bookPublisher) values (#{bookWriter}, #{bookName}, #{bookCategory}, #{bookPublisher})
+	</insert>
+	
+	<update id="test14" parameterType="Pack.BookDTO">
+		UPDATE book SET bookWriter = #{bookWriter}, bookName= #{bookName}, bookCategory= #{bookCategory}, bookPublisher= #{bookPublisher} WHERE bookID = #{bookID}
+	</update>
+
+	<select id="test15" resultType="Pack.BookDTO">
+		select * from book WHERE bookName = #{bookName}
+	</select>
+	
+	
+	
+	<!-- ///////////////////////////////////////// -->
+	
+	
 	<update id="userUpdate" parameterType="Pack.UserDTO">
 		update user set
 		userPwd = #{userPwd},
@@ -64,6 +91,8 @@
 	<delete id="userDelete" parameterType="Pack.UserDTO">
 		delete from user where userID=#{userID}
 	</delete>
+	
+	
 	
 
 </mapper>

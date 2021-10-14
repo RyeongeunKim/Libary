@@ -16,7 +16,7 @@
 	<h1>비밀번호 재입력 페이지</h1>
 
 	<form action="#" method="post">
-		비밀번호 <input type="text" name="userPwd" id="userPwd" value=""
+		비밀번호 <input type="password" name="userPwd" id="userPwd" value=""
 					placeholder="비밀번호를 입력"> 
 				<button type="button" onclick="bbb()">확인</button>
 	</form>
