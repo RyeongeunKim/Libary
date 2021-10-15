@@ -39,10 +39,10 @@
 	</select>
 	
 	<select id="test07" resultType="Pack.BookDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID bookPublisher like CONCAT('%',#{keyword},'%')
+		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where bookPublisher like CONCAT('%',#{keyword},'%')
 	</select>
 	<select id="test7" resultType="Pack.RentalDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID bookPublisher like CONCAT('%',#{keyword},'%')
+		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where bookPublisher like CONCAT('%',#{keyword},'%')
 	</select>
 	
 	
