@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,28 +17,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BookController {
 	
 	@RequestMapping("/search")
-	public String method07(Model model, HttpServletRequest r, HttpServletResponse response, BookDTO bdto) throws Exception {
+	public String method07(Model model, HttpServletRequest r, HttpServletResponse response, BookDTO bdto, RentalDTO rdto) throws Exception {
 		// 한글처리
 		r.setCharacterEncoding("utf-8");
 		String keyword = r.getParameter("keyword").trim();		
 		String bookInfo = r.getParameter("bookInfo").trim();	
 		BookDAO bdao = new BookDAO();
-		System.out.println(keyword);
-		List searchList = null;
+		Vector totalList = new Vector();
 		
 		switch (bookInfo) {
 		case "bookWriter":
-			searchList = bdao.searchListWriter(bdto, keyword);
+			totalList = bdao.searchListWriter(bdto, rdto, keyword);
 			break;
 		case "bookName":
-			searchList = bdao.searchListName(bdto, keyword);
+			totalList = bdao.searchListName(bdto, rdto, keyword);
 			break;
 		case "bookPublisher":
-			searchList = bdao.searchListPublisher(bdto, keyword);
+			totalList = bdao.searchListPublisher(bdto, rdto, keyword);
 			break;
 		}
 		
-		r.setAttribute("searchList", searchList);
+		r.setAttribute("bookList", totalList.get(0));
+		r.setAttribute("rentalList", totalList.get(1));
 		return "book/searchResult";
 	}	
 	
@@ -107,10 +108,11 @@ public class BookController {
 	}
 	
 	@RequestMapping("/bookSearch")
-	public String method014(Model model, BookDTO bdto, HttpServletRequest request) throws Exception{
+	public String method014(Model model, BookDTO bdto, RentalDTO rdto, HttpServletRequest request) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		System.out.println(1999);
 		BookDAO bdao = new BookDAO();
+		Vector totalList = new Vector();
 		String keyword = request.getParameter("keyword").trim();		
 		String bookvalue = request.getParameter("bookvalue").trim();
 		System.out.println(bdto.getBookName());
@@ -120,19 +122,18 @@ public class BookController {
 		
 		switch (bookvalue) {
 		case "bookWriter":
-			searchList = bdao.searchListWriter(bdto, keyword);
+			totalList = bdao.searchListWriter(bdto, rdto, keyword);
 			break;
 		case "bookName":
-			searchList = bdao.searchListName(bdto, keyword);
+			totalList = bdao.searchListName(bdto, rdto, keyword);
 			break;
 		case "bookPublisher":
-			searchList = bdao.searchListPublisher(bdto, keyword);
+			totalList = bdao.searchListPublisher(bdto, rdto, keyword);
 			break;
 		}
-		request.setAttribute("keyword", keyword);
-		System.out.println(keyword);
-		request.setAttribute("booklist", searchList);
-		System.out.println(searchList.size());
+		
+		request.setAttribute("bookList", totalList.get(0));
+		request.setAttribute("rentalList", totalList.get(1));	
 		
 		if(searchList.size() == 0) {
 			return "searchFail";

@@ -3,6 +3,7 @@ package Pack;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -18,25 +19,37 @@ public class BookDAO {
 		} catch (Exception e) { e.printStackTrace();}		
 	}
 	
-	List searchListWriter(BookDTO bdto, String keyword) {
+	Vector searchListWriter(BookDTO bdto, RentalDTO rdto, String keyword) {
 		SqlSession session = ssf.openSession();
 		List<BookDTO> mm = session.selectList("test05", keyword);
+		List<RentalDTO> mm2 = session.selectList("test5", keyword);
+		Vector total = new Vector();
+		total.add(mm);
+		total.add(mm2);
 		session.close();
-		return mm;
+		return total;
 	}
 	
-	List searchListName(BookDTO bdto, String keyword) {
+	Vector searchListName(BookDTO bdto, RentalDTO rdto, String keyword) {
 		SqlSession session = ssf.openSession();
 		List<BookDTO> mm = session.selectList("test06", keyword);
+		List<RentalDTO> mm2 = session.selectList("test6", keyword);
+		Vector total = new Vector();
+		total.add(mm);
+		total.add(mm2);
 		session.close();
-		return mm;
+		return total;
 	}
 	
-	List searchListPublisher(BookDTO bdto, String keyword) {
+	Vector searchListPublisher(BookDTO bdto, RentalDTO rdto, String keyword) {
 		SqlSession session = ssf.openSession();
 		List<BookDTO> mm = session.selectList("test07", keyword);
+		List<RentalDTO> mm2 = session.selectList("test7", keyword);
+		Vector total = new Vector();
+		total.add(mm);
+		total.add(mm2);
 		session.close();
-		return mm;
+		return total;
 	}
 	
 	
