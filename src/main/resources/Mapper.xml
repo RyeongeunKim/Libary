@@ -24,25 +24,36 @@
 	</select>
 	
 	<select id="test05" resultType="Pack.BookDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where bookWriter like CONCAT('%',#{keyword},'%')
-	</select>
-	
-	<select id="test5" resultType="Pack.RentalDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where bookWriter like CONCAT('%',#{keyword},'%')
+		select * from book where bookWriter like CONCAT('%',#{keyword},'%')
 	</select>
 	
 	<select id="test06" resultType="Pack.BookDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where bookName like CONCAT('%',#{keyword},'%')
-	</select>
-	<select id="test6" resultType="Pack.RentalDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where bookName like CONCAT('%',#{keyword},'%')
+		select * from book where bookName like CONCAT('%',#{keyword},'%')
 	</select>
 	
 	<select id="test07" resultType="Pack.BookDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where bookPublisher like CONCAT('%',#{keyword},'%')
+		select * from book where bookPublisher like CONCAT('%',#{keyword},'%')
 	</select>
-	<select id="test7" resultType="Pack.RentalDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where bookPublisher like CONCAT('%',#{keyword},'%')
+	
+	<select id="bookList" resultType="Pack.BookDTO" parameterType="int">
+	Select * From book left JOIN rental
+	ON bookID = #{bookID}
+	left JOIN reserve
+	ON bookID = #{bookID} where bookID = #{bookID}
+	</select>
+	
+	<select id="rentalList" resultType="Pack.RentalDTO" parameterType="int">
+	Select * From rental left JOIN book
+	ON rentalBookID = #{bookID}
+	left JOIN reserve
+	ON rentalBookID = #{bookID} where bookID = #{bookID}
+	</select>
+	
+	<select id="reserveList" resultType="Pack.ReserveDTO" parameterType="int">
+	Select * From reserve left JOIN rental
+	ON reserveBookID = #{bookID}
+	left JOIN book
+	ON reserveBookID = #{bookID} where bookID = #{bookID}
 	</select>
 	
 	

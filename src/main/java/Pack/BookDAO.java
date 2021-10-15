@@ -19,35 +19,36 @@ public class BookDAO {
 		} catch (Exception e) { e.printStackTrace();}		
 	}
 	
-	Vector searchListWriter(BookDTO bdto, RentalDTO rdto, String keyword) {
+	List searchListWriter(BookDTO bdto, String keyword) {
 		SqlSession session = ssf.openSession();
 		List<BookDTO> mm = session.selectList("test05", keyword);
-		List<RentalDTO> mm2 = session.selectList("test5", keyword);
-		Vector total = new Vector();
-		total.add(mm);
-		total.add(mm2);
 		session.close();
-		return total;
+		return mm;
 	}
 	
-	Vector searchListName(BookDTO bdto, RentalDTO rdto, String keyword) {
+	List searchListName(BookDTO bdto, String keyword) {
 		SqlSession session = ssf.openSession();
 		List<BookDTO> mm = session.selectList("test06", keyword);
-		List<RentalDTO> mm2 = session.selectList("test6", keyword);
-		Vector total = new Vector();
-		total.add(mm);
-		total.add(mm2);
 		session.close();
-		return total;
+		return mm;
 	}
 	
-	Vector searchListPublisher(BookDTO bdto, RentalDTO rdto, String keyword) {
+	List searchListPublisher(BookDTO bdto, String keyword) {
 		SqlSession session = ssf.openSession();
 		List<BookDTO> mm = session.selectList("test07", keyword);
-		List<RentalDTO> mm2 = session.selectList("test7", keyword);
+		session.close();
+		return mm;
+	}
+	
+	Vector bookDetail(BookDTO bdto, RentalDTO rdto,ReserveDTO rsdto,int bookID) {
+		SqlSession session = ssf.openSession();
+		List<BookDTO> mm1 = session.selectList("bookList", bookID);
+		List<RentalDTO> mm2 = session.selectList("rentalList", bookID);		
+		List<ReserveDTO> mm3 = session.selectList("reserveList", bookID);		
 		Vector total = new Vector();
-		total.add(mm);
+		total.add(mm1);
 		total.add(mm2);
+		total.add(mm3);
 		session.close();
 		return total;
 	}
