@@ -62,6 +62,13 @@ public class BookDAO {
 		return mm;
 	}
 	
+	List bookRentalList(BookDTO bdto){
+		SqlSession session = ssf.openSession();
+		List<BookDTO> mm = session.selectList("test16", bdto);
+		System.out.println(mm);
+		return mm;
+	}
+	
 	void bookDelete(BookDTO bdto) {	
 		SqlSession session = ssf.openSession();
 		System.out.println(bdto);
@@ -99,8 +106,24 @@ public class BookDAO {
 		return mm;
 	}
 	
+	void rentalInsert(RentalDTO rdto){
+		
+		SqlSession session = ssf.openSession();
+		try {
+			int result = session.insert("test17", rdto);
+			if(result > 0) session.commit(); 
+			} catch (Exception e) { e.printStackTrace();
+			} finally { session.close(); }
+	}
 	
-	//////////////////////////////
+	List rentalList(RentalDTO rdto){
+		SqlSession session = ssf.openSession();
+		List<BookDTO> mm = session.selectList("test18");
+		return mm;
+	}
+	
+	
+	////////////////경도//////////////
 	
 	
 	

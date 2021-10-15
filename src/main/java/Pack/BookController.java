@@ -73,9 +73,45 @@ public class BookController {
 		return "admin/bookInfo2";
 	}
 	@RequestMapping("/C")
-	public String method20() {
+	public String method22(Model model, RentalDTO rdto, HttpServletRequest request) {
+		String bookId = request.getParameter("bookID");
+		System.out.println(bookId);
+		String userID = request.getParameter("userID");
+		System.out.println(userID);
+		String rentalcheck = request.getParameter("rentalcheck");
+		System.out.println(rentalcheck);
+		String startDate = request.getParameter("startDate");
+		System.out.println(startDate);
+		String endDate = request.getParameter("endDate");
+		System.out.println(endDate);
 		
-		return "admin/booklist";
+		BookDAO bdao = new BookDAO();
+		bdao.rentalInsert(rdto);
+		List rentalList = bdao.rentalList(rdto);
+		request.setAttribute("rentalList", rentalList);
+		
+		return "admin/dateCheck";
+	}
+	@RequestMapping("/goRentalCheck")
+	public String method21(Model model, BookDTO bdto, HttpServletRequest request) {
+		
+		BookDAO bdao = new BookDAO();
+		List booklist = bdao.bookRentalList(bdto);
+		System.out.println(booklist);
+		request.setAttribute("bookList", booklist);
+		
+		return "admin/rentalCheck";
+	}
+	
+	
+	@RequestMapping("/rental")
+	public String method20(Model model, UserDTO udto, HttpServletRequest request) {
+		
+		UserDAO udao = new UserDAO();
+		List userList = udao.userList(udto);
+		request.setAttribute("userList", userList);
+		
+		return "admin/userList2";
 	}
 	
 	@RequestMapping("/booklist")
@@ -83,7 +119,7 @@ public class BookController {
 		
 		BookDAO bdao = new BookDAO();
 		List booklist = bdao.booklist(bdto);
-		request.setAttribute("booklist", booklist);
+		request.setAttribute("bookList", booklist);
 
 		return "admin/booklist";
 	}
@@ -94,7 +130,7 @@ public class BookController {
 		bdao.bookDelete(bdto);
 		List booklist = bdao.booklist(bdto);
 	
-		request.setAttribute("booklist", booklist);
+		request.setAttribute("bookList", booklist);
 		return "admin/booklist";
 		
 		
@@ -107,7 +143,7 @@ public class BookController {
 		BookDAO bdao = new BookDAO();
 		bdao.bookinsert(bdto);
 		List booklist = bdao.booklist(bdto);
-		request.setAttribute("booklist", booklist);
+		request.setAttribute("bookList", booklist);
 
 		return "admin/booklist";
 	}
@@ -119,42 +155,36 @@ public class BookController {
 		System.out.println(bdto);
 		bdao.bookUpdate(bdto);
 		List booklist = bdao.booklist(bdto);
-		request.setAttribute("booklist", booklist);
+		request.setAttribute("bookList", booklist);
 
 		return "admin/booklist";
 	}
 	
 	@RequestMapping("/bookSearch")
-	public String method014(Model model, BookDTO bdto, HttpServletRequest request) throws Exception{
+	public String method014(Model model, BookDTO bdto, RentalDTO rdto, HttpServletRequest request) throws Exception{
+		// 한글처리
 		request.setCharacterEncoding("utf-8");
-		System.out.println(1999);
-		BookDAO bdao = new BookDAO();
 		String keyword = request.getParameter("keyword").trim();		
-		String bookvalue = request.getParameter("bookvalue").trim();
-		System.out.println(bdto.getBookName());
+		String bookInfo = request.getParameter("bookInfo").trim();	
+		BookDAO bdao = new BookDAO();
+		List booklist = bdao.booklist(bdto);
 		
-		
-		List searchList = null;
-		
-		switch (bookvalue) {
+		switch (bookInfo) {
 		case "bookWriter":
-			searchList = bdao.searchListWriter(bdto, keyword);
+			booklist = bdao.searchListWriter(bdto, keyword);
 			break;
 		case "bookName":
-			searchList = bdao.searchListName(bdto, keyword);
+			booklist = bdao.searchListName(bdto, keyword);
 			break;
 		case "bookPublisher":
-			searchList = bdao.searchListPublisher(bdto, keyword);
+			booklist = bdao.searchListPublisher(bdto, keyword);
 			break;
 		}
 		
-		request.setAttribute("searchList", searchList);
+		request.setAttribute("bookList", booklist);
 		
-		if(searchList.size() == 0) {
-			return "searchFail";
-		}else {
-			return "admin/booklist";			
-		}
+		
+		return "admin/booklist";			
 	}
 	
 	
