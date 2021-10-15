@@ -11,8 +11,8 @@ pageEncoding="UTF-8"%>
 <body>
 	<h1>로그인</h1>
 	<form action="" method="post">
-		아이디 : <input type="text" name="userID" value="user01"><br>
-		비밀번호 : <input type="password" name="userPwd" value="1234"><br>
+		아이디 : <input type="text" name="userID" value="admin"><br>
+		비밀번호 : <input type="password" name="userPwd" value="admin"><br>
 		<input type="submit" value="로그인"  onclick="javascript: form.action='loginGo'">
 		<input type="submit" value="회원가입"  onclick="javascript: form.action='join'">
 	</form>
