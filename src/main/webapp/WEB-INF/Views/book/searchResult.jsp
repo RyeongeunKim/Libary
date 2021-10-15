@@ -12,43 +12,35 @@
 <body>
 
 	<%
-		List rentalList = (List)request.getAttribute("reantalList");
 		List bookList = (List)request.getAttribute("bookList");
 	%>
 
 	<h1>책정보</h1>
 	<c:choose>
-		<c:when test="${fn:length(rentalList) == 0 && fn:length(bookList) == 0}">
+		<c:when test="${fn:length(bookList) == 0}">
 		검색 결과가 없습니다.
 		</c:when>
 		<c:otherwise>
 		<table border="1">
 			<tr>
+				<th>이미지</th>
 				<th>저자</th>
 				<th>서명</th>	
 				<th>분류</th>	
 				<th>출판사</th>	
-				<th>대출여부</th>	
 			</tr>
 			<c:forEach var="i" items="${ bookList }" varStatus="deo">	
 					<tr>
+					
+						<td><img src="${i.bookImage}" alt="Image" width="120px" height="120px"></td>
 						<td>${i.bookWriter}</td>
-						<td>${i.bookName}</td>					
+						<td><a href="bookDetail?bookID=${i.bookID}">${i.bookName}</a></td>					
 						<td>${i.bookCategory}</td>					
 						<td>${i.bookPublisher}</td>		
-						<c:choose>
-							<c:when test="${rentalList[deo.index].rentalKey == 1}">
-							<td>대출가능(비치중)</td>	
-							</c:when>
-							<c:otherwise>
-							<td>대출불가</td>	
-							</c:otherwise>
-						</c:choose>	
+
 					</tr>
 			</c:forEach>	
 		</c:otherwise>
 	</c:choose>
-		
-	</table>
 </body>
 </html>
