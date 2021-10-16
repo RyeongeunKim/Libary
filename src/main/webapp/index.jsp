@@ -3,7 +3,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.text.*"%>
 
 <head>
-	<title>메인페이지</title>
+	<title>main</title>
 </head>
 
 <body>

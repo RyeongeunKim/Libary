@@ -1,0 +1,160 @@
+@charset "UTF-8";
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+#wrap {
+	width: 100%;
+	margin: 0 auto;
+}
+
+body {
+	padding: 10px;
+	font-family: Gulim;
+	background: white;
+}
+
+.header {
+	padding: 10px;
+	text-align: center;
+	background: white;
+
+}
+
+.footer {
+	padding: 10px;
+	text-align: center;
+	background: white;
+	margin-top: 20px;
+}
+
+.header h1 {
+	font-size: 40px;
+}
+
+.center {
+	width: 100%;
+	background-color: white;
+}
+
+.card {
+	background-image: url(https://images.unsplash.com/photo-1564981797816-1043664bf78d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80);
+	background-repeat:no-repeat;
+	padding: 20px;
+	margin-top: 20px;
+	height: 900px;
+	background-size: 100%;
+}
+
+.realbox{
+	padding: 20px;
+	margin-top: 40px;
+	height: 900px;
+}
+
+
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+
+}
+
+
+
+
+
+
+
+/* 검색기능전부 */
+.boxContainer {
+
+	margin: auto;
+	margin-top: 20px;
+	position: relative;
+	width: 80%;
+	height: 80px;
+	border: 0px solid #2980b9;
+	padding: 0px 10px;
+	border-radius: 50px;
+	background-color: white;
+}
+
+.elementsContainer {
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.search {
+	border: none;
+	height: 100%;
+	width: 100%;
+	padding: 0px 5px;
+	border-radius: 50px;
+	font-size: 18px;
+	font-family: "Nunito";
+	color: #424242;
+	font-weight: 500;
+}
+
+.search:focus {
+	outline: none;
+}
+
+.material-icons {
+	font-size: 26;
+	color: #2980b9;
+}
+
+.elementsContainer .main-search-botton {
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	background:
+		url(https://library.busan.go.kr/resources/homepage/busanlibrary/img/search-btn.png)
+		no-repeat 0 0;
+	font-size: 0;
+	width: 175px;
+	height: 70px;
+	border: 0;
+	outline: 0;
+}
+
+.selectbar_container {
+	height: 20px;
+	width: 70px;
+	position: relative;
+}
+
+.selectbar {
+	display: block;
+	width: 130px;
+	height: 55px;
+	padding: 17px 16px;
+	font-size: 18px;
+	font-family: 'Jeju Gothic', sans-serif;
+	line-height: 1.4;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: none;
+	border-radius: 0;
+	outline: 0;
+	position: relative;
+}
+
+.input_text {
+	position: relative; width : 550px; height : 50px; font-size : 18px;
+	border : none;
+	outline: 0;
+	border: none;
+	font-size: 18px;
+	height: 50px;
+	width: 60%;
+}
