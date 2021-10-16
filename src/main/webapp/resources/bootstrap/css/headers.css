@@ -59,3 +59,35 @@
 button {
 	font-family: 'Nanum Gothic', sans-serif;
 }
+
+body{
+	text-align: center;
+}
+
+a { 
+	color: #000; 
+	text-decoration: none;
+}
+
+#bookName{
+	color: #3232FF;
+	font-weight: bolder;
+}
+
+#add{
+	margin-top:100px;
+}
+
+#detail{
+	text-align: left;
+}
+
+#p{
+	color: #3232FF;
+	font-weight: 500;
+}
+
+#i{
+	color: #FF0000;
+	font-weight: 500;
+}
