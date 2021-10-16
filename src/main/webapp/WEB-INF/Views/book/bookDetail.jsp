@@ -10,67 +10,98 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- Header Section Begin -->
+	<%@ include file="../include/header.jsp"%>
+	<!-- Header Section End -->
+	
+   <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container" id="add">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+    
 	<%
 		List bookList = (List)request.getAttribute("bookList");
 		List rentalList = (List)request.getAttribute("rentalList");
 		List reserveList = (List)request.getAttribute("reserveList");
 	%>
 	
-	<h1>책상세보기</h1>
-
-	<table border="1">
-		<tr>
-			<th>이미지</th>
-			<th>제목</th>
-			<th>저자</th>
-			<th>반납예정일</th>	
-			<th>대출상태</th>	
-			<th>예약상태</th>
-			<c:choose>
-				<c:when test="${rtDate == true}">
-				</c:when>
-				<c:otherwise>
-				<th>예약</th>	
-				</c:otherwise>
-			</c:choose>
-
-		</tr>
-		<c:forEach var="i" items="${ bookList }" varStatus="deo" end="0">	
+	<!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container" id="add">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+    
+	<div class="container">
+	  <div class="row">
+	    <div class="col-1">
+	    <!-- left -->
+	    </div>
+	    
+	    <div class="col-10">
+	<table class="table table-bordered">
+		<th colspan="3">상세보기</th>
+		<c:forEach var="i" items="${ bookList }" varStatus="deo" end="0">
 				<tr>
-					<td><img src="${i.bookImage}" alt="Image" width="120px" height="120px"></td>
-					<td>${i.bookName}</td>					
-					<td>${i.bookWriter}</td>
-					<td>${rentalList[deo.index].returnDate}</td>					
+					<td width="9%"><img src="${i.bookImage}" alt="Image" width="120px" height="160px"></td>
+					<td width="20%">
+						<b>제목</b><br>
+						<b>저자</b><br>
+						<b>반납예정일</b><br>
+						<b>대출상태</b><br>	
+						<b>예약상태</b><br>
+						<c:choose>
+							<c:when test="${fn:length(reserveList) == 0}">
+							<b>예약</b>				
+							</c:when>	
+						</c:choose>
+					</td>
+					<td id="detail">${i.bookName}<br>					
+					${i.bookWriter}<br>
+					${rentalList[deo.index].returnDate}<br>					
 					<c:choose>
 						<c:when test="${rentalList[deo.index].rentalKey == 1}">
-						<td>대출가능(비치중)</td>	
+						<b id="p">대출가능(비치중)</b><br>
 						</c:when>
 						<c:otherwise>
-						<td>대출불가</td>	
+						<b id="i">대출불가(관외대출중 : ${rentalList[deo.index].returnDate} 반납예정)</b><br>
 						</c:otherwise>
 					</c:choose>	
 					<c:choose>
 						<c:when test="${fn:length(reserveList) == 0}">
-						<td>예약가능</td>	
+						예약가능<br>	
 						</c:when>	
 						<c:otherwise>
-						<td>예약불가</td>	
+						예약불가<br>	
 						</c:otherwise>										
 					</c:choose>
 					<c:choose>
 						<c:when test="${fn:length(reserveList) == 0}">
-						<td>
 						<input type = "button" class="btn btn-outline-primary me-2"  value="예약"
 						onclick="openReservation('${i.bookName}','${i.bookID }')"/>						
-						</td>	
 						</c:when>	
-						<c:otherwise>
-						<td>예약불가</td>	
-						</c:otherwise>										
 					</c:choose>
+					</td>
 				</tr>
-		</c:forEach>	
-		
+		</c:forEach>
+		</table>
+	    </div>
+	    
+	    <div class="col-1">
+	    <!-- right -->
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container" id="add">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+	
 	<script type="text/javascript">
 		 function openReservation(bookName, bookID) {
 			const userID = '<%=(String)session.getAttribute("userID")%>'
@@ -81,6 +112,17 @@
 			}
 		}
 	</script>
+
+   <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container" id="add">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+	
+	<!-- Footer Section Begin "location.href='deleteUser'"-->
+	<%@ include file="../include/footer.jsp"%>
+	<!-- Footer Section End -->
 
 </body>
 </html>

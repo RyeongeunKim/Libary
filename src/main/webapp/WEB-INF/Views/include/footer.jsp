@@ -10,7 +10,7 @@
     <link href="${path}/resources/bootstrap/css/footers.css" rel="stylesheet">
 	
 	<body>
-	<hr>
+
 	<div class="container" id="footer">
 	  <footer class="py-3 my-4">
 	    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -25,6 +25,7 @@
 	    © Busan Metropolitan Library, All rights reserved.</p>
 	  </footer>
 	</div>
+
 	
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
