@@ -75,10 +75,7 @@
 		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where rentalUserID=#{userID} and rentalKey=1;
 	</select>	
 	
-	<select id="userData" resultType="Pack.UserDTO">
-		select * from user where userID=#{userID}
-	</select>
-	
+
 	<!-- /////////////////경도////////////////// -->
 	
 	<select id="test11" resultType="Pack.BookDTO">
@@ -127,6 +124,9 @@
 	
 	<!-- ///////////////////////////////////////// -->
 	
+	<select id="userData" resultType="Pack.UserDTO">
+		select * from user where userID=#{userID}
+	</select>
 	
 	<update id="userUpdate" parameterType="Pack.UserDTO">
 		update user set
@@ -141,7 +141,20 @@
 	<delete id="userDelete" parameterType="Pack.UserDTO">
 		delete from user where userID=#{userID}
 	</delete>
+
+	<select id="readDate" parameterType="int" resultType="date">
+		select returnDate from rental where rentalBookID=#{bIdNum} 
+	</select>
 	
+	<!-- parameterType="Pack.ReserveDTO" -->
+	<insert id="insertReserve" parameterType="Pack.ReserveDTO">
+		insert into reserve( reserveUserID, reserveDate, reserveBookID)
+		 values ( #{reserveUserID}, #{reserveDate}, #{reserveBookID})
+	</insert>
+	
+	<select id="searchBID" parameterType="Pack.ReserveDTO" resultType="int" >
+		select reserveBookID from reserve where reserveBookID= #{reserveBookId} 
+	</select>	
 	
 	
 

@@ -13,7 +13,7 @@ pageEncoding="UTF-8"%>
 	<form action="" method="post">
 		아이디 : <input type="text" name="userID" value="admin"><br>
 		비밀번호 : <input type="password" name="userPwd" value="admin"><br>
-		<input type="submit" value="로그인"  onclick="javascript: form.action='loginGo'">
-		<input type="submit" value="회원가입"  onclick="javascript: form.action='join'">
+		<input type="submit" value="로그인"  onclick="javascript: form.action='loginGo'" required="required">
+		<input type="submit" value="회원가입"  onclick="javascript: form.action='join'" required="required">
 	</form>
 </body>

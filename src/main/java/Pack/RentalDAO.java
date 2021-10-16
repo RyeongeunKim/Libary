@@ -1,9 +1,9 @@
 package Pack;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
-
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -52,6 +52,44 @@ public class RentalDAO {
 //		session.close();
 //		return mm;
 //	}
+	
+	//	=============================================
+	//	반납일 읽어오기
+		Date bookReturn(int bIdNum) {
+			SqlSession session = ssf.openSession();
+				Date bookID = session.selectOne("readDate", bIdNum);
+				session.close();
+			return bookID;
+		}
+		
+	//	예약정보 넣기
+		void insertReserve(ReserveDTO rdto) {
+			SqlSession session = ssf.openSession();
+				try {
+					int result= session.insert("insertReserve",rdto);
+					if(result > 0) session.commit();
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					session.close();
+				} 
+		}
+		
+	//	예약중인지아닌지 bookID 읽어오기
+		int Reserved(int reserveBookId) {
+			SqlSession session = ssf.openSession();
+			try {
+				int result= session.selectOne("searchBID", reserveBookId);
+				session.close();
+				
+				return result;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return  0;
+			}
+			
+		}     
+	//	========================================================================
 
 	
 	

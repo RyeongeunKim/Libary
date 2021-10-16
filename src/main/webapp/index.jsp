@@ -8,8 +8,6 @@ pageEncoding="UTF-8"%>
 
 <body>
 	
-	<%
-		response.sendRedirect("main");
-	%>
+	<% response.sendRedirect("main"); %>
 
 </body>

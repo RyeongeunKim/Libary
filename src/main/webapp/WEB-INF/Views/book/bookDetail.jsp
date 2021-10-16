@@ -25,7 +25,15 @@
 			<th>저자</th>
 			<th>반납예정일</th>	
 			<th>대출상태</th>	
-			<th>예약상태</th>	
+			<th>예약상태</th>
+			<c:choose>
+				<c:when test="${rtDate == true}">
+				</c:when>
+				<c:otherwise>
+				<th>예약</th>	
+				</c:otherwise>
+			</c:choose>
+
 		</tr>
 		<c:forEach var="i" items="${ bookList }" varStatus="deo" end="0">	
 				<tr>
@@ -43,7 +51,18 @@
 					</c:choose>	
 					<c:choose>
 						<c:when test="${fn:length(reserveList) == 0}">
-						<td><a href="reserve?bookID=${i.bookID}">예약가능</a></td>	
+						<td>예약가능</td>	
+						</c:when>	
+						<c:otherwise>
+						<td>예약불가</td>	
+						</c:otherwise>										
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:length(reserveList) == 0}">
+						<td>
+						<input type = "button" class="btn btn-outline-primary me-2"  value="예약"
+						onclick="openReservation('${i.bookName}','${i.bookID }')"/>						
+						</td>	
 						</c:when>	
 						<c:otherwise>
 						<td>예약불가</td>	
@@ -51,6 +70,17 @@
 					</c:choose>
 				</tr>
 		</c:forEach>	
+		
+	<script type="text/javascript">
+		 function openReservation(bookName, bookID) {
+			const userID = '<%=(String)session.getAttribute("userID")%>'
+			if(userID == 'null')
+				{ alert('로그인을 해주세요.') }
+			else{
+				window.open("reReserve?bookName="+ bookName+"&bookID="+ bookID,"", "width=582,height=360");
+			}
+		}
+	</script>
 
 </body>
 </html>

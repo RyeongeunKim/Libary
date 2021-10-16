@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<%
 		List bookList = (List)request.getAttribute("bookList");
 	%>
@@ -18,7 +17,9 @@
 	<h1>책정보</h1>
 	<c:choose>
 		<c:when test="${fn:length(bookList) == 0}">
+		<div class="container">
 		검색 결과가 없습니다.
+		</div>
 		</c:when>
 		<c:otherwise>
 		<table border="1">
