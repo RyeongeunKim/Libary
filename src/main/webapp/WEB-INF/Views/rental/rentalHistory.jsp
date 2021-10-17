@@ -45,6 +45,8 @@
 		<!-- 본문 -->
 
 
+
+				<!-- 네비게이션 바 -->
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 					<div class="container-fluid">
 						<button class="navbar-toggler" type="button"
@@ -69,23 +71,42 @@
 					</div>
 				</nav>
 
-
-
-				<div class="right">
-					<ul>
-						<c:forEach var="i" items="${ bookList }" varStatus="deo">
-
-							<li>책 이름 : ${i.bookName} 저자 : ${i.bookWriter} 출판사 :
-								${i.bookPublisher} 카테고리 : ${i.bookCategory} 청구기호 :
-								${rentalList[deo.index].rentalID}</li>
-
-						</c:forEach>
-					</ul>
-				</div>
+   <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container" id="add1">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
 
 
 
 
+<table class="table table-bordered">
+		<th colspan="3">상세보기</th>
+		<c:forEach var="i" items="${ bookList }" varStatus="deo" end="0">
+				<tr>
+					<td width="9%">
+					<img src="${i.bookImage}" alt="Image" width="120px" height="160px">
+					</td>
+					
+					<td width="20%">
+						<b>청구기호</b><br>
+						<b>제목</b><br>
+						<b>저자</b><br>
+						<b>대출일</b><br>	
+						<b>반납예정일</b><br>
+					</td>
+					
+					<td id="detail">
+					${rentalList[deo.index].rentalID}<br>					
+					${i.bookName}<br>
+					${i.bookWriter}<br>					
+					${rentalList[deo.index].rentalDate}<br>					
+					${rentalList[deo.index].returnDate}<br>					
+					</td>
+				</tr>
+		</c:forEach>
+		</table>
 
 
 			</div>
