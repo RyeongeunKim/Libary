@@ -34,13 +34,16 @@
 
 <body>
 
-	<div>
-
-		<div>
-			<!-- Header Section Begin -->
-			<%@ include file="../include/header.jsp"%>
-			<!-- Header Section End -->
-		</div>
+	<!-- Header Section Begin -->
+	<%@ include file="../include/header.jsp"%>
+	<!-- Header Section End -->
+	
+   <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container" id="add">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
 
 <%
 	List rentalList = (List)request.getAttribute("reantalList");
@@ -48,35 +51,97 @@
 %>
 
 
-		<div>
-			<div>
-				<h1>대출중도서</h1>
-				<hr>
-				<h3>현재 대출중인 도서를 확인하세요.</h3>
-				<hr>
-			</div>
-			<div class="left">
-				<form action="" method="post">
-					<input type="submit" value="대출중도서"
-						onclick="javascript: form.action='myLibrary'"><br> <input
-						type="submit" value="대출이력"
-						onclick="javascript: form.action='rentalHistory'">
-				</form>
-			</div>
 
-			<div class="right">
-				<ul>
-					<c:forEach var="i" items="${ rentalList }" varStatus="deo">
-						<li>책 이름 : ${bookList[deo.index].bookName} 청구기호 : ${i.rentalID} 대출일 :
-							${i.returnDate} 반납일 : ${i.rentalDate}</li>
 
-					</c:forEach>
-				</ul>
-			</div>
+	<div class="container">
+	  <div class="row">
+	    <div class="col-1">
+	    <!-- left -->
+	    </div>
+	    
+	    <div class="col-10">
+		<!-- 본문 -->
+		
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div class="container-fluid">
+						<button class="navbar-toggler" type="button"
+							data-bs-toggle="collapse" data-bs-target="#navbarNav"
+							aria-controls="navbarNav" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarNav">
+							<ul class="navbar-nav">
 
-			<!-- ///////////// -->
+								<li class="nav-item"><a class="nav-link" href="myLibrary">대출도서</a>
+								</li>
+								<li class="nav-item"><a class="nav-link"
+									href="rentalHistory">대출이력</a></li>
+								<li class="nav-item"><a class="nav-link"
+									onclick="openRepassword()">정보수정</a></li>
+								<li class="nav-item"><a class="nav-link"
+									onclick="secession()">회원탈퇴</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+				
+				<!-- Page Add Section Begin -->
+			    <section class="page-add">
+			        <div class="container" id="add1">
+			        </div>
+			    </section>
+			    <!-- Page Add Section End -->
+		
+	<table class="table table-bordered">
+		<th colspan="3">상세보기</th>
+		<c:forEach var="i" items="${ rentalList }" varStatus="deo">
+				<tr>
+					<td width="9%"><img src="${bookList[deo.index].bookImage}" alt="Image" width="120px" height="160px"></td>
+					<td width="20%">
+						<b>청구기호</b><br>
+						<b>제목</b><br>
+						<b>저자</b><br>
+						<b>대출일</b><br>	
+						<b>반납예정일</b><br>
+					</td>
+					<td id="detail">${i.rentalID}<br>					
+					${bookList[deo.index].bookName}<br>
+					${bookList[deo.index].bookWriter}<br>		
+					${i.rentalDate}<br>		
+					${i.returnDate}<br>		
+					</td>
+				</tr>
+		</c:forEach>
+		</table>
 
-			<div>
+	    </div>
+	    
+	    
+	    
+	    <div class="col-1">
+	    <!-- right -->
+	    </div>
+	  </div>
+	</div>
+
+
+
+
+
+  <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container" id="add">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+	
+	<!-- Footer Section Begin "location.href='deleteUser'"-->
+	<%@ include file="../include/footer.jsp"%>
+	<!-- Footer Section End -->
+
+
+
 				<script>
 					function secession() {
 						if (confirm("회원탈퇴 하시겠습니까?")) {
@@ -94,27 +159,10 @@
 						location.href = "reConfirm?userPwd=" + userPwd
 					}
 				</script>
-			</div>
-			<div>
-				<button type="button" class="btn btn-outline-primary me-2"
-					onclick="openRepassword()">정보수정</button>
-
-				<button type="button" class="btn btn-outline-primary me-2"
-					onclick="secession()">회원탈퇴</button>
-			</div>
-
-
-		</div>
 
 
 
-		<div class="bottom">
-			<!-- Footer Section Begin -->
-			<%@ include file="../include/footer.jsp"%>
-			<!-- Footer Section End -->
-		</div>
 
-	</div>
 
 </body>
 </html>
