@@ -72,23 +72,66 @@ public class BookController {
 		System.out.println(bookId);
 		return "admin/bookInfo2";
 	}
-	@RequestMapping("/C")
-	public String method22(Model model, RentalDTO rdto, HttpServletRequest request) {
-		String bookId = request.getParameter("bookID");
-		System.out.println(bookId);
+	@RequestMapping("/D")
+	public String method24(Model model, BookDTO bdto, RentalDTO rdto, UserDTO udto, HttpServletRequest request) {
+		String userID = request.getParameter("userID");
+		String rentalBookID = request.getParameter("rentalBookID");
+		bdto.setBookID(Integer.parseInt(rentalBookID));
+		System.out.println(userID);
+		BookDAO bdao = new BookDAO();
+		BookDAO rdao = new BookDAO();
+		Vector totalList = new Vector();
+		bdao.returnBookKey(bdto);
+		rdao.returnRentalKey(rdto);
+		
+		
+//		List bookList = bdao.bookListKey(bdto);
+//		List rentalList = rdao.rentalListKey(rdto);
+//		System.out.println(bookList);
+//		System.out.println(rentalList);
+//		request.setAttribute("rentalList", rentalList);
+//		request.setAttribute("bookList", bookList);
+//		request.setAttribute("userID",rentalUserID);
+//		return "admin/booklist4";
+		
+//		totalList = rdao.rentaling(rdto, bdto, userID);
+//
+//		request.setAttribute("rentalList", totalList.get(0));
+//		request.setAttribute("bookList", totalList.get(1));
+//		request.setAttribute("userID",userID);
+//		System.out.println(totalList);
+		request.setAttribute("userID",userID);
+		return "admin/redirect1";
+		
+	}
+	
+	@RequestMapping("/return")
+	public String method23(Model model, BookDTO bdto, UserDTO udto, RentalDTO rdto, HttpServletRequest request) {
 		String userID = request.getParameter("userID");
 		System.out.println(userID);
-		String rentalcheck = request.getParameter("rentalcheck");
-		System.out.println(rentalcheck);
-		String startDate = request.getParameter("startDate");
-		System.out.println(startDate);
-		String endDate = request.getParameter("endDate");
-		System.out.println(endDate);
-		
 		BookDAO bdao = new BookDAO();
+		BookDAO rdao = new BookDAO();
+		
+		Vector totalList = new Vector();
+		totalList = rdao.rentaling(rdto, bdto, userID);
+
+		request.setAttribute("rentalList", totalList.get(0));
+		request.setAttribute("bookList", totalList.get(1));
+		request.setAttribute("userID",userID);
+		System.out.println(totalList);
+		return "admin/booklist3";
+	}
+	
+	@RequestMapping("/C")
+	public String method22(Model model, BookDTO bdto,RentalDTO rdto, HttpServletRequest request) {
+		BookDAO adao = new BookDAO();
+		BookDAO bdao = new BookDAO();
+		adao.bookCheck(bdto);
+		List bookList = bdao.booklist(bdto);
 		bdao.rentalInsert(rdto);
 		List rentalList = bdao.rentalList(rdto);
 		request.setAttribute("rentalList", rentalList);
+		request.setAttribute("bookList", bookList);
 		
 		return "admin/dateCheck";
 	}
@@ -115,14 +158,14 @@ public class BookController {
 	}
 	
 	@RequestMapping("/booklist")
-	public String method09(Model model, BookDTO bdto, HttpServletRequest request) {
-		
-		BookDAO bdao = new BookDAO();
-		List booklist = bdao.booklist(bdto);
-		request.setAttribute("bookList", booklist);
+    public String method09(Model model, BookDTO bdto, HttpServletRequest request) {
 
-		return "admin/booklist";
-	}
+        BookDAO bdao = new BookDAO();
+        List booklist = bdao.booklist(bdto);
+        request.setAttribute("bookList", booklist);
+
+        return "admin/booklist";
+    }
 	
 	@RequestMapping("/bookDelete")
 	public String method10(Model model, BookDTO bdto, HttpServletRequest request){
