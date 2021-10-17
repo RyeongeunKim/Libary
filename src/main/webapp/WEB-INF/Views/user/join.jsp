@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, java.text.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,71 +11,176 @@
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+	
+
+		<link href="${path}/resources/bootstrap/css/join.css" rel="stylesheet">
+	
 </head>
 <body>
-	<h1>회원가입</h1>
-	<form action="joinResult" method="post" id="form" name="form">
-		<div>
-			<div>	
-				아이디 <input type="text" id="userID" name="userID" placeholder="아이디를 입력해주세요">	
+
+
+	<!-- Header Section Begin -->
+	<%@ include file="../include/header.jsp"%>
+	<!-- Header Section End -->
+	
+   <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container" id="add">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+
+
+	<div class="container">
+	  <div class="row">
+	    <div class="col-1">
+	    <!-- left -->
+	    </div>
+	    
+
+	    <div class="col-10">
+		<!-- 본문 -->
+
+
+
+  <main>
+    <div class="row g-5" id="totalt">
+    
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3" id="signin">회원가입</h4>
+        <form action="joinResult" method="post" id="form" name="form">
+          <div class="row g-3" id="fontposition">
+
+
+			<div class="col-12">
+				<label for="username" class="form-label">아이디</label>
+				<div class="input-group has-validation">
+					<input type="text" class="form-control" id="userID" name="userID" placeholder="아이디를 입력해주세요" required>
+				</div>
+				<div>
+					<span class="ckMsg_id"></span>
+				</div>
 			</div>
+
+			<div class="col-12">
+				<div>
+             	 <label for="email" class="form-label">비밀번호</label>
+              		<input type="password" name="userPwd" class="form-control" id="userPwd" placeholder="비밀번호를 입력해주세요">
+            	 </div>
+            	 <div>
+					<span class="ckMsg_pw"></span>
+				</div>
+            </div>
+
 			<div>
-				<span class="ckMsg_id"></span>
-			</div>
-		</div>
-		<div>
-			<div>	
-				비밀번호 <input type="password" id="userPwd"  name="userPwd" value="" placeholder="비밀번호를 입력해주세요">	
-			</div>
-			<div>
-				<span class="ckMsg_pw"></span>
-			</div>
-		</div>
-		<div>
-			<div>	
-				비밀번호 확인 <input type="password" id="userPwd1"  name="pwConfirm" value="" placeholder="비밀번호 확인">	
-			</div>
-			<div>
-				<span class="ckMsg_pw1"></span>
-			</div>
-		</div>		
-		<div>
-			<div>	
-				이름 <input type="text" name="userName" id="userName"  value="" placeholder="이름을 입력해주세요">	
-			</div>
-			<div>
+           		<div class="col-12">
+             	 <label for="address" class="form-label">비밀번호 확인</label>
+              		<input type="password" class="form-control" name="pwConfirm" id="userPwd1" placeholder="비밀번호 확인" required>
+           	 	</div>
+            	<div>
+					<span class="ckMsg_pw1"></span>
+				</div>
+            </div>
+
+            <div>
+            	<div class="col-12">
+             	 <label for="address" class="form-label">이름</label>
+              	<input type="text" name="userName" class="form-control" id="userName" placeholder="이름을 입력해주세요" required>
+           	 </div>
+           	 <div>
 				<span class="ckMsg_name"></span>
 			</div>
-		</div>
-		<div>
-			<div>	
-				나이 <input type="text" name="userAge" id="userAge"  value="" placeholder="나이를 입력해주세요">	
-			</div>
+            </div>
+
 			<div>
+            <div class="col-12">
+              <label for="address" class="form-label">나이</label>
+              <input type="text" class="form-control" name="userAge" id="userAge" placeholder="나이를 입력해주세요" required>
+            </div>
+            <div>
 				<span class="ckMsg_age"></span>
 			</div>
-		</div>
-		<div>
-			<div>	
-				전화번호 <input type="text" name="userPhone" id="userPhone"  value="" placeholder="'-' 제외">	
-			</div>
-			<div>
+            </div>
+            
+            <div>
+            <div class="col-12">
+              <label for="address" class="form-label">전화번호</label>
+              <input type="text" class="form-control" name="userPhone" id="userPhone"  placeholder="'-' 제외" required>
+            </div>
+            <div>
 				<span class="ckMsg_phone"></span>
 			</div>
-		</div>
-		<div>
-			<div>	
-				주소 <input type="text" name="userAddress" id="userAddress"  value="" placeholder="주소를 입력해주세요" required readonly>
-				<button type=button class="btn btn-primary" onclick="goPopup();">주소검색</button>	
-			</div>
-			<div>
+            </div>
+            
+            <div>
+            <div class="col-12">
+   				<label for="address" class="form-label" id="address">주소</label>
+            	<input type=button id="adresssearch" class="btn btn-primary" onclick="goPopup();" value="주소검색">
+	
+                <input type="text" class="form-control" name="userAddress" id="userAddress" placeholder="주소를 입력해주세요" required readonly>
+
+            </div>
+            <div>
 				<span class="ckMsg_address"></span>
+          	<button class="w-100 btn btn-primary btn-lg" id="buttonsign" type="submit">회원가입</button>
 			</div>
-		</div>
-		<div>
-			<input type="submit" value="회원가입">
-		</div>	
-	</form>
+            </div>
+
+          	</div>
+          </div>
+
+          
+          
+          
+        </form>
+      </div>
+    </div>
+  </main>
+
+
+	
+			</div>
+
+	    <div class="col-1">
+	    <!-- right -->
+	    </div>
+	  </div>
+	</div>
+
+
+
+	   <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container" id="add">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+	
+	<!-- Footer Section Begin "location.href='deleteUser'"-->
+	<%@ include file="../include/footer.jsp"%>
+	<!-- Footer Section End -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 유효성 체크 시작 -->
 	<script type="text/javascript">
 	$(document).ready(function() {
