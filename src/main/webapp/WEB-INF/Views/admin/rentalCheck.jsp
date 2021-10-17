@@ -28,7 +28,9 @@
 		</div>
 		<input type="hidden" name="rentalUserID" value=<%=userID%> />
 		<input type="hidden" name="rentalBookID" value=<%=bookID%> />
-		<input type='hidden' name='rentalKey' value='0' />
+		<input type='hidden' name='rentalKey' value='1' />
+		<input type='hidden' name='bookRentalKey' value='1' />
+		<input type='hidden' name='bookID' value=<%=bookID %> />
 		<label for="startDate">시작일 : </label>
 		<input type="date" id = "startDate" name= "rentalDate"> 
 		<label for="endDate">종료일 : </label>

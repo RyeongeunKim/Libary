@@ -3,6 +3,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="Pack.RentalDTO"%>
+<%@ page import="Pack.BookDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +16,7 @@
 
 	<%
 		String keyword = request.getParameter("keyword");
+		List rentalList = (List)request.getAttribute("reantalList");
 		List bookList = (List)request.getAttribute("bookList");
 	%>
 	<%= keyword %>
@@ -43,8 +46,7 @@
 					<th>저자</th>
 					<th>서명</th>	
 					<th>분류</th>	
-					<th>출판사</th>
-					<th>대출여부</th>	
+					<th>출판사</th>	
 				</tr>
 				<c:forEach var="i" items="${ bookList }" varStatus="deo">	
 						<tr>
@@ -53,24 +55,12 @@
 							<td>${i.bookWriter}</td>
 							<td><a href="bookDetail?bookID=${i.bookID}">${i.bookName}</a></td>					
 							<td>${i.bookCategory}</td>					
-							<td>${i.bookPublisher}</td>
-							<c:choose>
-								<c:when test="${i.bookRentalKey != 1}">
-									<td>대여가능</td>		
-									<td>
-										<a href="bookDelete?bookID=${i.bookID}&keyword=${keyword}&bookvalue=0">삭제</a><br/>
-										<a href="B?bookID=${i.bookID}">수정</a><br/>
-										<a href="rental?bookID=${i.bookID}">대여</a>
-									</td>
-								</c:when>
-								<c:otherwise>
-									<td>대여불가능</td>
-									<td>
-										<a href="bookDelete?bookID=${i.bookID}&keyword=${keyword}&bookvalue=0">삭제</a><br/>
-										<a href="B?bookID=${i.bookID}">수정</a><br/>
-									</td>
-								</c:otherwise>
-							</c:choose>
+							<td>${i.bookPublisher}</td>		
+							<td>
+								<a href="bookDelete?bookID=${i.bookID}&keyword=${keyword}&bookvalue=0">삭제</a>
+								<a href="B?bookID=${i.bookID}">수정</a>
+								<a href="rental?bookID=${i.bookID}">대여</a>
+							</td>
 						</tr>
 				</c:forEach>
 			</table>	

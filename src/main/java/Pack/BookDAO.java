@@ -56,9 +56,27 @@ public class BookDAO {
 	
 	/////////////경도///////////////
 	
+	Vector booklist1(BookDTO bdto, RentalDTO rdto){
+		SqlSession session = ssf.openSession();
+		List<BookDTO> mm = session.selectList("test011");
+		List<RentalDTO> mm2 = session.selectList("test012");
+		Vector total = new Vector();
+	      total.add(mm);
+	      total.add(mm2);
+	      session.close();
+	      return total;
+	}
+	
 	List booklist(BookDTO bdto){
 		SqlSession session = ssf.openSession();
 		List<BookDTO> mm = session.selectList("test11");
+		return mm;
+	}
+	
+	List bookListKey(BookDTO bdto){
+		SqlSession session = ssf.openSession();
+		
+		List<BookDTO> mm = session.selectList("test24");
 		return mm;
 	}
 	
@@ -120,6 +138,53 @@ public class BookDAO {
 		SqlSession session = ssf.openSession();
 		List<BookDTO> mm = session.selectList("test18");
 		return mm;
+	}
+	
+	List rentalListKey(RentalDTO rdto){
+		SqlSession session = ssf.openSession();
+
+		List<BookDTO> mm = session.selectList("test25");
+
+		return mm;
+	}
+	
+	void bookCheck(BookDTO adto){
+		SqlSession session = ssf.openSession();
+		try {
+			int result = session.update("test19", adto);
+			if(result > 0) session.commit(); 
+			} catch (Exception e) { e.printStackTrace();
+			} finally { session.close(); }
+	}
+	
+	Vector rentaling(RentalDTO rdto, BookDTO bdto, String userID){
+	      SqlSession session = ssf.openSession();
+	      List<RentalDTO> mm = session.selectList("test20", userID);
+	      List<BookDTO> mm2 = session.selectList("test21", userID);
+	      Vector total = new Vector();
+	      total.add(mm);
+	      total.add(mm2);
+	      System.out.println(total);
+	      session.close();
+	      return total;
+	   }
+
+	void returnBookKey(BookDTO adto){
+		SqlSession session = ssf.openSession();
+		try {
+			int result = session.update("test22", adto);
+			if(result > 0) session.commit(); 
+			} catch (Exception e) { e.printStackTrace();
+			} finally { session.close(); }
+	}
+	
+	void returnRentalKey(RentalDTO rdto){
+		SqlSession session = ssf.openSession();
+		try {
+			int result = session.update("test23", rdto);
+			if(result > 0) session.commit(); 
+			} catch (Exception e) { e.printStackTrace();
+			} finally { session.close(); }
 	}
 	
 	

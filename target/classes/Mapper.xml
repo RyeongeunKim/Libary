@@ -78,8 +78,17 @@
 
 	<!-- /////////////////경도////////////////// -->
 	
+	<select id="test011" resultType="Pack.BookDTO" parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID ;
+	</select>	
+	
+	<select id="test012" resultType="Pack.RentalDTO" parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID ;
+	</select>
+		
+	
 	<select id="test11" resultType="Pack.BookDTO">
-		select * from book
+		select * from book ;
 	</select>
 
 	<delete id="test12" parameterType="Pack.BookDTO">
@@ -118,6 +127,34 @@
 
 	<select id="test18" resultType="Pack.RentalDTO">
 		select * from rental
+	</select>
+	
+	<update id="test19" parameterType="Pack.BookDTO">
+		UPDATE book SET bookRentalKey = #{bookRentalKey} WHERE bookID = #{bookID}
+	</update>
+	
+	<select id="test20" resultType="Pack.RentalDTO" parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where rentalUserID=#{userID} and rentalKey=1;
+	</select>	
+	
+	<select id="test21" resultType="Pack.BookDTO" parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where rentalUserID=#{userID} and rentalKey=1;
+	</select>
+	
+	<update id="test22" parameterType="Pack.BookDTO" >
+		UPDATE book SET bookRentalKey = 0 WHERE bookID = #{bookID} and bookRentalKey = 1
+	</update>
+	
+	<update id="test23" parameterType="Pack.RentalDTO">
+		UPDATE rental SET rentalKey = 0 WHERE rentalBookID = ${rentalBookID} and rentalKey = 1
+	</update>
+	
+	<select id="test24" resultType="Pack.BookDTO">
+		select * from book
+	</select>
+	
+	<select id="test25" resultType="Pack.RentalDTO">
+		select * from rental where rentalUserID = #{rentalUserID} and rentalKey = 1
 	</select>
 	
 	

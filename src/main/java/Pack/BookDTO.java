@@ -2,13 +2,19 @@ package Pack;
 
 public class BookDTO {
 	private int bookID;
+	private int bookRentalKey;
 	private String bookWriter;
 	private String bookName;
 	private String bookCategory;
 	private String bookPublisher;
 	private String bookImage;
 	
-	
+	public int getBookRentalKey() {
+		return bookRentalKey;
+	}
+	public void setBookRentalKey(int bookRentalKey) {
+		this.bookRentalKey = bookRentalKey;
+	}
 	public String getBookImage() {
 		return bookImage;
 	}
