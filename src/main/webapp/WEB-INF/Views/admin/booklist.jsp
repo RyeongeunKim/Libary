@@ -1,13 +1,17 @@
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@page import="java.util.List"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 책 리스트</title>
+
+<link href="${path}/resources/bootstrap/css/booklist.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -18,6 +22,33 @@
 	%>
 	<%= keyword %>
 	
+	
+		<!-- Header Section Begin -->
+	<%@ include file="../include/header.jsp"%>
+	<!-- Header Section End -->
+	
+   <!-- Page Add Section Begin -->
+    <section class="page-ad ㅡd">
+        <div class="container" id="add">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+	
+	
+	
+	
+	
+	
+	<div class="container">
+	  <div class="row">
+	    <div class="col-1">
+	    <!-- left -->
+	    </div>
+	    
+	    <div class="col-10">
+		<!-- 본문 -->
+		
+			
 	<form mathod="post" action="bookSearch">
 		<div>
  			<select name="bookInfo">
@@ -29,6 +60,9 @@
 			<input type="submit" value="검색">
 		</div>    	
     </form>
+    
+
+    
     
 	<h1>책정보</h1>
 	<c:choose>
@@ -76,6 +110,42 @@
 			</table>	
 		</c:otherwise>
 	</c:choose>
+	
+	
 	<a href="A">추가</a>
+		
+	    </div>
+	    
+	    <div class="col-1">
+	    <!-- right -->
+	    </div>
+	  </div>
+	</div>
+	
+	
+	
+	
+
+	
+	
+
+	
+	
+	
+	
+	
+	  <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container" id="add">
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+	
+	<!-- Footer Section Begin "location.href='deleteUser'"-->
+	<%@ include file="../include/footer.jsp"%>
+	<!-- Footer Section End -->
+	
+	
+	
 </body>
 </html>

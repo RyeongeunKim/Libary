@@ -39,7 +39,7 @@
 	<!-- Header Section End -->
 	
    <!-- Page Add Section Begin -->
-    <section class="page-add">
+    <section class="page-ad ㅡd">
         <div class="container" id="add">
         </div>
     </section>
@@ -49,6 +49,7 @@
 	List rentalList = (List)request.getAttribute("reantalList");
 	List bookList = (List)request.getAttribute("bookList");
 %>
+
 
 
 
