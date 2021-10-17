@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+
+#fontposition {
+	float: left;
+	font-weight: bold;
+}
+
+label {
+	float: left;
+}
+
+#buttonsign{
+	margin-top: 30px;
+}
+
+#totalt {
+	text-align: center;
+    padding: 50px 20px;
+    margin-left: 250px;
+}
+
+#adresssearch{
+	    margin-left: 370px;
+    margin-bottom: 10px;
+    height: 32px;
+    font-size: 14px;
+}
+
+#address{
+	
+	margin-top: 5px;
+}
+
+#signin {
+	font-size: 40px;
+    font-weight: 1000;
+}
