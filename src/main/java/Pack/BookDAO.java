@@ -157,10 +157,10 @@ public class BookDAO {
 			} finally { session.close(); }
 	}
 	
-	Vector rentaling(RentalDTO rdto, BookDTO bdto, String userID){
+	Vector rentaling(RentalDTO rdto, BookDTO bdto, String userID2){
 	      SqlSession session = ssf.openSession();
-	      List<RentalDTO> mm = session.selectList("test20", userID);
-	      List<BookDTO> mm2 = session.selectList("test21", userID);
+	      List<RentalDTO> mm = session.selectList("test20", userID2);
+	      List<BookDTO> mm2 = session.selectList("test21", userID2);
 	      Vector total = new Vector();
 	      total.add(mm);
 	      total.add(mm2);

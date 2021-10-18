@@ -29,7 +29,7 @@
 
 
 <%
-	List rentalList = (List)request.getAttribute("reantalList");
+	List rentalList = (List)request.getAttribute("rentalList");
 	List bookList = (List)request.getAttribute("bookList");
 %>
 
@@ -83,10 +83,10 @@
 
 <table class="table table-bordered">
 		<th colspan="3">상세보기</th>
-		<c:forEach var="i" items="${ bookList }" varStatus="deo" end="0">
+		<c:forEach var="i" items="${ rentalList }" varStatus="deo">
 				<tr>
 					<td width="9%">
-					<img src="${i.bookImage}" alt="Image" width="120px" height="160px">
+					<img src="${bookList[deo.index].bookImage}" alt="Image" width="120px" height="160px">
 					</td>
 					
 					<td width="20%">
@@ -98,11 +98,11 @@
 					</td>
 					
 					<td id="detail">
-					${rentalList[deo.index].rentalID}<br>					
-					${i.bookName}<br>
-					${i.bookWriter}<br>					
-					${rentalList[deo.index].rentalDate}<br>					
-					${rentalList[deo.index].returnDate}<br>					
+					${i.rentalID}<br>					
+					${bookList[deo.index].bookName}<br>
+					${bookList[deo.index].bookWriter}<br>					
+					${i.rentalDate}<br>					
+					${i.returnDate}<br>					
 					</td>
 				</tr>
 		</c:forEach>

@@ -180,6 +180,7 @@ public class UserController {
 		System.out.println(5);
 		HttpSession session = req.getSession();
 		String userID = (String) session.getAttribute("userID");
+		
 		UserDAO udao = new UserDAO();
 		udto = udao.userPwdData(userID); 
 		
@@ -212,11 +213,12 @@ public class UserController {
 	@RequestMapping("/userUpdate") // 회원 정보 수정
 	public String userUpdate(HttpServletRequest req, UserDTO udto) {
 		System.out.println(2);
-		HttpSession session = req.getSession();
-		String userID = (String) session.getAttribute("userID");
+		//HttpSession session = req.getSession();
+		//String userID = (String) session.getAttribute("userID");
+		String userID = req.getParameter("userID");
 		UserDAO udao = new UserDAO();
 		udto = udao.userDataRead(userID); 
-		
+		System.out.println(userID);
 		
 		String sPw = udto.getUserPwd(); 
 		String sPw01 = req.getParameter("userPwd"); 
@@ -254,5 +256,40 @@ public class UserController {
 	}
 	
 	
+	///////////////////////ㄱㄷ////////////////////////////////
+	
+	
+	//회원정보 삭제하기
+	@RequestMapping("/userInfoDelete")
+	public String userInfoDelete(Model model, UserDTO udto, HttpServletRequest request){
+		UserDAO udao = new UserDAO();
+		udao.userInfoDelete(udto);
+		List userList = udao.userList(udto);
+	
+		request.setAttribute("userList", userList);
+		return "admin/userList";
+	}
+	
+	//회원정보 수정 페이지 이동하기
+	@RequestMapping("/userPrivacy")
+	public String userPrivacy(Model model, UserDTO udto, HttpServletRequest request){
+		UserDAO udao = new UserDAO();
+		List userPrivacy = udao.userPrivacy(udto);
+		request.setAttribute("userPrivacy", userPrivacy);
+		System.out.println(userPrivacy);
+		return "admin/userInfoUpdate";
+	}
+	
+	//회원정보 수정하기
+	@RequestMapping("/userInfoUpdate")
+	public String userInfoUpdate(Model model, UserDTO udto, HttpServletRequest request) {
+		UserDAO udao = new UserDAO();
+		System.out.println(udto);
+		udao.userInfoUpdate(udto);
+		List userList = udao.userList(udto);
+		request.setAttribute("userList", userList);
+
+		return "admin/userList";
+	}
 
 }
