@@ -2,15 +2,19 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.List"%>
+
 <c:set var="path" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원정보 목록</title>
 
+
 <link href="${path}/resources/bootstrap/css/userList.css"
 	rel="stylesheet">
+
 
 </head>
 <body>
@@ -134,6 +138,7 @@
 	<!-- Footer Section Begin "location.href='deleteUser'"-->
 	<%@ include file="../include/footer.jsp"%>
 	<!-- Footer Section End -->
+
 
 
 </body>

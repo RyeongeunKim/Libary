@@ -124,7 +124,6 @@
 				</main>
 		
 
-		
 	    </div>
 	    
 	    <div class="col-3">
@@ -134,7 +133,6 @@
 	</div>
     
 
-	
 				
 	  <!-- Page Add Section Begin -->
     <section class="page-add">

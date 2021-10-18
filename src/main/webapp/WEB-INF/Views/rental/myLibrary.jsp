@@ -38,6 +38,7 @@
 	<%@ include file="../include/header.jsp"%>
 	<!-- Header Section End -->
 
+
 	<!-- Page Add Section Begin -->
 	<section class="page-add">
 		<div class="container" id="add"></div>
@@ -48,6 +49,7 @@
 	List rentalList = (List) request.getAttribute("rentalList");
 	List bookList = (List) request.getAttribute("bookList");
 	%>
+
 
 
 
