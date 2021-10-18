@@ -76,7 +76,8 @@
 			</div>
 		</div>
 		<div>
-			<input type="submit" value="수정하기">
+			<input type="hidden" name=userID value="${userID}"> <input
+				type="submit" value="수정하기">
 		</div>
 	</form>
 

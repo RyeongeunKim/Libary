@@ -123,12 +123,7 @@
 					</form>
 				</main>
 		
-		
 
-		
-		
-		
-		
 	    </div>
 	    
 	    <div class="col-3">
@@ -137,13 +132,7 @@
 	  </div>
 	</div>
     
-    
-    
-    
 
-	
-	
-	
 				
 	  <!-- Page Add Section Begin -->
     <section class="page-add">
@@ -155,11 +144,7 @@
 	<!-- Footer Section Begin "location.href='deleteUser'"-->
 	<%@ include file="../include/footer.jsp"%>
 	<!-- Footer Section End -->
-	
-	
-	
-	
-	
+
 	
 	
 	

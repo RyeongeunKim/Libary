@@ -20,7 +20,6 @@
 		String keyword = request.getParameter("keyword");
 		List bookList = (List)request.getAttribute("bookList");
 	%>
-	<%= keyword %>
 	
 	
 		<!-- Header Section Begin -->
@@ -34,11 +33,7 @@
     </section>
     <!-- Page Add Section End -->
 	
-	
-	
-	
-	
-	
+
 	<div class="container">
 	  <div class="row">
 	    <div class="col-1">
@@ -89,7 +84,7 @@
 							<td>${i.bookCategory}</td>					
 							<td>${i.bookPublisher}</td>
 							<c:choose>
-								<c:when test="${i.bookRentalKey != 1}">
+								<c:when test="${i.bookRentalKey == 1}">
 									<td>대여가능</td>		
 									<td>
 										<a href="bookDelete?bookID=${i.bookID}&keyword=${keyword}&bookvalue=0">삭제</a><br/>
@@ -121,19 +116,7 @@
 	    </div>
 	  </div>
 	</div>
-	
-	
-	
-	
 
-	
-	
-
-	
-	
-	
-	
-	
 	  <!-- Page Add Section Begin -->
     <section class="page-add">
         <div class="container" id="add">

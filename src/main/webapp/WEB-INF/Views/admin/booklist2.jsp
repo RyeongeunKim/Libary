@@ -19,7 +19,6 @@
 		List rentalList = (List)request.getAttribute("reantalList");
 		List bookList = (List)request.getAttribute("bookList");
 	%>
-	<%= keyword %>
 	
 	<form mathod="post" action="bookSearch">
 		<div>

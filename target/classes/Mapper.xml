@@ -3,90 +3,114 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="Mapper">
- 
-  	<select id="test01" resultType="Pack.UserDTO">
- 		select userPwd from user where userID=#{userID} and userPwd=#{userPwd}
- 	</select>
- 	
-   	<select id="test02" resultType="String">
- 		select * from user where userID=#{userID}
- 	</select>
+
+<mapper namespace="Mapper">
+
+	<select id="test01" resultType="Pack.UserDTO">
+		select userPwd from user where userID=#{userID} and userPwd=#{userPwd}
+	</select>
+
+	<select id="test02" resultType="String">
+		select * from user where userID=#{userID}
+	</select>
 
 	<insert id="test03" parameterType="Pack.UserDTO">
-		insert into user(userID, userPwd, userName, userAge, userPhone, userAddress)
-		 values (#{userID}, #{userPwd}, #{userName}, #{userAge}, #{userPhone}, #{userAddress})
+		insert into user(userID,
+		userPwd, userName, userAge, userPhone, userAddress)
+		values (#{userID}, #{userPwd}, #{userName}, #{userAge}, #{userPhone},
+		#{userAddress})
 	</insert>
-	
+
 	<select id="test04" resultType="Pack.UserDTO">
-		select * from user where userID != 'admin'
+		select * from user where userID
+		!= 'admin'
 	</select>
-	
-	<select id="test05" resultType="Pack.BookDTO" parameterType="String">
-		select * from book where bookWriter like CONCAT('%',#{keyword},'%')
+
+	<select id="test05" resultType="Pack.BookDTO"
+		parameterType="String">
+		select * from book where bookWriter like
+		CONCAT('%',#{keyword},'%')
 	</select>
-	
-	<select id="test06" resultType="Pack.BookDTO" parameterType="String">
-		select * from book where bookName like CONCAT('%',#{keyword},'%')
+
+	<select id="test06" resultType="Pack.BookDTO"
+		parameterType="String">
+		select * from book where bookName like
+		CONCAT('%',#{keyword},'%')
 	</select>
-	
-	<select id="test07" resultType="Pack.BookDTO" parameterType="String">
-		select * from book where bookPublisher like CONCAT('%',#{keyword},'%')
+
+	<select id="test07" resultType="Pack.BookDTO"
+		parameterType="String">
+		select * from book where bookPublisher like
+		CONCAT('%',#{keyword},'%')
 	</select>
-	
-	<select id="bookList" resultType="Pack.BookDTO" parameterType="int">
-	Select * From book left JOIN rental
-	ON bookID = #{bookID}
-	left JOIN reserve
-	ON bookID = #{bookID} where bookID = #{bookID}
+
+	<select id="bookList" resultType="Pack.BookDTO"
+		parameterType="int">
+		Select * From book left JOIN rental
+		ON bookID = #{bookID}
+		left JOIN reserve
+		ON bookID = #{bookID} where bookID = #{bookID}
 	</select>
-	
-	<select id="rentalList" resultType="Pack.RentalDTO" parameterType="int">
-	Select * From rental left JOIN book
-	ON rentalBookID = #{bookID}
-	left JOIN reserve
-	ON rentalBookID = #{bookID} where bookID = #{bookID}
+
+	<select id="rentalList" resultType="Pack.RentalDTO"
+		parameterType="int">
+		Select * From rental left JOIN book
+		ON rentalBookID = #{bookID}
+		left JOIN reserve
+		ON rentalBookID = #{bookID} where bookID = #{bookID}
 	</select>
-	
-	<select id="reserveList" resultType="Pack.ReserveDTO" parameterType="int">
-	Select * From reserve left JOIN rental
-	ON reserveBookID = #{bookID}
-	left JOIN book
-	ON reserveBookID = #{bookID} where bookID = #{bookID}
+
+	<select id="reserveList" resultType="Pack.ReserveDTO"
+		parameterType="int">
+		Select * From reserve left JOIN rental
+		ON reserveBookID = #{bookID}
+		left JOIN book
+		ON reserveBookID = #{bookID} where bookID = #{bookID}
 	</select>
-	
-	
+
+
 	<!-- /////////////////////////////////////////// -->
-	
-	<select id="test08" resultType="Pack.RentalDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where rentalUserID=#{userID} and rentalKey!=1;
-	</select>	
-	
-	<select id="test8" resultType="Pack.BookDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where rentalUserID=#{userID} and rentalKey!=1;
-	</select>	
-	
-	<select id="test09" resultType="Pack.RentalDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where rentalUserID=#{userID} and rentalKey!=1;
+
+	<select id="test08" resultType="Pack.RentalDTO"
+		parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID =
+		r.rentalBookID where rentalUserID=#{userID} and rentalKey=1;
 	</select>
-		
-	<select id="test10" resultType="Pack.BookDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where rentalUserID=#{userID} and rentalKey=1;
-	</select>	
-	
+
+	<select id="test8" resultType="Pack.BookDTO"
+		parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID =
+		r.rentalBookID where rentalUserID=#{userID} and rentalKey=1;
+	</select>
+
+	<select id="test09" resultType="Pack.RentalDTO"
+		parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID =
+		r.rentalBookID where rentalUserID=#{userID} and rentalKey=0;
+	</select>
+
+	<select id="test10" resultType="Pack.BookDTO"
+		parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID =
+		r.rentalBookID where rentalUserID=#{userID} and rentalKey=0;
+	</select>
+
 
 	<!-- /////////////////경도////////////////// -->
-	
-	<select id="test011" resultType="Pack.BookDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID ;
-	</select>	
-	
-	<select id="test012" resultType="Pack.RentalDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID ;
+
+	<select id="test011" resultType="Pack.BookDTO"
+		parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID =
+		r.rentalBookID ;
 	</select>
-		
-	
+
+	<select id="test012" resultType="Pack.RentalDTO"
+		parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID =
+		r.rentalBookID ;
+	</select>
+
+
 	<select id="test11" resultType="Pack.BookDTO">
 		select * from book ;
 	</select>
@@ -98,8 +122,8 @@
 
 	<insert id="test13" parameterType="Pack.BookDTO">
 		insert into book(bookWriter,
-		bookName, bookCategory, bookPublisher) values (#{bookWriter},
-		#{bookName}, #{bookCategory}, #{bookPublisher})
+		bookName, bookCategory, bookPublisher, bookRentalKey) values (#{bookWriter},
+		#{bookName}, #{bookCategory}, #{bookPublisher}, 1)
 	</insert>
 
 	<update id="test14" parameterType="Pack.BookDTO">
@@ -128,71 +152,123 @@
 	<select id="test18" resultType="Pack.RentalDTO">
 		select * from rental
 	</select>
-	
+
 	<update id="test19" parameterType="Pack.BookDTO">
-		UPDATE book SET bookRentalKey = #{bookRentalKey} WHERE bookID = #{bookID}
+		UPDATE book SET bookRentalKey
+		= #{bookRentalKey} WHERE bookID = #{bookID}
 	</update>
-	
-	<select id="test20" resultType="Pack.RentalDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where rentalUserID=#{userID} and rentalKey=1;
-	</select>	
-	
-	<select id="test21" resultType="Pack.BookDTO" parameterType="String">
-		select b.*, r.* from book b join rental r on b.bookID = r.rentalBookID where rentalUserID=#{userID} and rentalKey=1;
+
+	<select id="test20" resultType="Pack.RentalDTO"
+		parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID =
+		r.rentalBookID where rentalUserID=#{userID2} and rentalKey=1;
 	</select>
-	
-	<update id="test22" parameterType="Pack.BookDTO" >
-		UPDATE book SET bookRentalKey = 0 WHERE bookID = #{bookID} and bookRentalKey = 1
+
+	<select id="test21" resultType="Pack.BookDTO"
+		parameterType="String">
+		select b.*, r.* from book b join rental r on b.bookID =
+		r.rentalBookID where rentalUserID=#{userID2} and rentalKey=1;
+	</select>
+
+	<update id="test22" parameterType="Pack.BookDTO">
+		UPDATE book SET
+		bookRentalKey = 1 WHERE bookID = #{bookID} and bookRentalKey = 0
 	</update>
-	
+
 	<update id="test23" parameterType="Pack.RentalDTO">
-		UPDATE rental SET rentalKey = 0 WHERE rentalBookID = ${rentalBookID} and rentalKey = 1
+		UPDATE rental SET rentalKey =
+		0 WHERE rentalBookID = ${rentalBookID} and rentalKey = 1
 	</update>
-	
+
 	<select id="test24" resultType="Pack.BookDTO">
 		select * from book
 	</select>
-	
+
 	<select id="test25" resultType="Pack.RentalDTO">
-		select * from rental where rentalUserID = #{rentalUserID} and rentalKey = 1
+		select * from rental where
+		rentalUserID = #{rentalUserID} and rentalKey = 0
 	</select>
-	
-	
-	
+
+	<!-- 회원정보 삭제하기 -->
+	<delete id="userInfoDelete" parameterType="Pack.UserDTO">
+		DELETE
+		FROM user WHERE userID = #{userID}
+	</delete>
+
+	<!-- 회원정보 수정하기 -->
+	<update id="userInfoUpdate" parameterType="Pack.UserDTO">
+		UPDATE user SET
+		userPwd= #{userPwd}, userName= #{userName}, userAge= #{userAge},
+		userPhone= #{userPhone} WHERE userID = #{userID}
+	</update>
+
+	<!-- 개인정보 가져오기 -->
+	<select id="userPrivacy" resultType="Pack.UserDTO">
+		select * from user where
+		userID = #{userID}
+	</select>
+
+
 	<!-- ///////////////////////////////////////// -->
-	
+
 	<select id="userData" resultType="Pack.UserDTO">
-		select * from user where userID=#{userID}
+		select * from user where
+		userID=#{userID}
 	</select>
-	
+
 	<update id="userUpdate" parameterType="Pack.UserDTO">
 		update user set
-		userPwd = #{userPwd},
+		userPwd =
+		#{userPwd},
 		userName = #{userName},
 		userAge = #{userAge},
-		userPhone = #{userPhone},
-		userAddress =#{userAddress} 
+		userPhone =
+		#{userPhone},
+		userAddress =#{userAddress}
 		where userID=#{userID}
 	</update>
-	
+
 	<delete id="userDelete" parameterType="Pack.UserDTO">
-		delete from user where userID=#{userID}
+		delete from user where
+		userID=#{userID}
 	</delete>
 
 	<select id="readDate" parameterType="int" resultType="date">
-		select returnDate from rental where rentalBookID=#{bIdNum} 
+		select
+		returnDate from rental where rentalBookID=#{bIdNum}
 	</select>
-	
+
 	<!-- parameterType="Pack.ReserveDTO" -->
 	<insert id="insertReserve" parameterType="Pack.ReserveDTO">
-		insert into reserve( reserveUserID, reserveDate, reserveBookID)
-		 values ( #{reserveUserID}, #{reserveDate}, #{reserveBookID})
+		insert into reserve(
+		reserveUserID, reserveDate, reserveBookID, reserveKey, checkKey)
+		values ( #{reserveUserID}, #{reserveDate}, #{reserveBookID}, 1, 1)
 	</insert>
-	
-	<select id="searchBID" parameterType="Pack.ReserveDTO" resultType="int" >
-		select reserveBookID from reserve where reserveBookID= #{reserveBookId} 
-	</select>	
-	
-	
+
+	<select id="searchBID" parameterType="Pack.ReserveDTO"
+		resultType="int">
+		select checkKey from reserve where
+		reserveBookID= #{reserveBookId}
+	</select>
+
+	<select id="selectBID" resultType="Pack.BookDTO"
+		parameterType="String">
+		select b.*, r.*
+		from book b join reserve r
+		on b.bookID = r.reserveBookID
+	</select>
+
+	<select id="selectresDate" resultType="Pack.ReserveDTO"
+		parameterType="Date">
+		select reserveDate
+		from book b join reserve r
+		on b.bookID = r.reserveBookID
+	</select>
+
+
+	<delete id="resCancel02" parameterType="Pack.ReserveDTO">
+		delete from reserve where
+		reserveBookID=#{bIdNum}
+	</delete>
 
 </mapper>

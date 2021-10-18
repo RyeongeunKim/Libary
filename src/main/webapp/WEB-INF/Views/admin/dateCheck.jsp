@@ -30,7 +30,7 @@
 				<td>${i.bookCategory}</td>
 				<td>${i.bookPublisher}</td>
 				<c:choose>
-					<c:when test="${i.bookRentalKey != 1}">
+					<c:when test="${i.bookRentalKey != 0}">
 						<td>대여가능</td>
 						<td><a
 							href="bookDelete?bookID=${i.bookID}&keyword=${keyword}&bookvalue=0">삭제</a><br />

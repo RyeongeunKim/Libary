@@ -59,9 +59,9 @@
 		
 		
 		<div class="userlist1111">
-			<h1 class="list12">회원정보 목록</h1><br>
-		</div>
-		
+
+			<h1 class="list12">회원 책 목록</h1><br>
+
 						<!-- 네비게이션 바 -->
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 					<div class="container-fluid">
@@ -74,7 +74,10 @@
 						<div class="collapse navbar-collapse" id="navbarNav">
 							<ul class="navbar-nav">
 
-								<li class="nav-item"><a href="booklist">도서 리스트</a>
+
+								<li class="nav-item"><a class="nav-link" href="main">메인페이지로 가기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+								<li class="nav-item"><a class="nav-link" href="booklist">도서 리스트&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+								<li class="nav-item"><a class="nav-link" href="userList">회원정보 목록 </a>
 
 							</ul>
 						</div>
@@ -84,44 +87,44 @@
 
 		
 		
-		
-		
-		
-		
-				
-		
+
 	<form action="D" method="post">
-		<table border="1">
+		<div class="table-responsive">
+		<table class="table">
 			<tr>
 				<th>책 일련번호</th>
 				<th>대출 날짜</th>
 				<th>반납 예정일</th>
 				<th>대출자</th>
 			</tr>
-			<c:forEach var="i" items="${ rentalList }" varStatus="deo">
-				<tr>
-					<td>${bookList[deo.index].bookName}</td>
-					<td>${i.rentalDate}</td>
-					<td>${i.returnDate}</td>
-					<td>${i.rentalUserID}</td>
-					<td>${i.rentalBookID}</td>
-					<form action="D" method="post">
-					<td>
-					<input type="hidden" name="rentalUserID"
-						value="<%=userID%>"><input type="hidden" name="userID"
-						value="<%=userID%>"> <input type="hidden"
-						name="rentalBookID" value="${i.rentalBookID}"> 
-					<input type="submit">
-					</td>
-					</form>
 
-				</tr>
+        <c:forEach var="i" items="${ rentalList }" varStatus="deo">
+            <tr>
+                <td>${bookList[deo.index].bookName}</td>
+                <td>${i.rentalDate}</td>
+                <td>${i.returnDate}</td>
+                <td>${i.rentalUserID}</td>
+                <td>${i.rentalBookID}</td>
+                <form action="D" method="post">
+                <td>
+                <input type="hidden" name="rentalUserID"
+                    value="<%=userID%>"><input type="hidden" name="userID"
+                    value="<%=userID%>"> <input type="hidden"
+                    name="rentalBookID" value="${i.rentalBookID}"> 
+                <input type="submit">
+                </td>
+                </form>
 
+            </tr>
 			</c:forEach>
 		</table>
+
+		</form>
+	</div>
+
 		
 		
-		
+
 		
 		
 		

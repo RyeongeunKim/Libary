@@ -107,17 +107,17 @@ public class BookController {
 	
 	@RequestMapping("/return")
 	public String method23(Model model, BookDTO bdto, UserDTO udto, RentalDTO rdto, HttpServletRequest request) {
-		String userID = request.getParameter("userID");
-		System.out.println(userID);
+		String userID2 = request.getParameter("userID2");
+		System.out.println(userID2);
 		BookDAO bdao = new BookDAO();
 		BookDAO rdao = new BookDAO();
 		
 		Vector totalList = new Vector();
-		totalList = rdao.rentaling(rdto, bdto, userID);
+		totalList = rdao.rentaling(rdto, bdto, userID2);
 
 		request.setAttribute("rentalList", totalList.get(0));
 		request.setAttribute("bookList", totalList.get(1));
-		request.setAttribute("userID",userID);
+		request.setAttribute("userID2",userID2);
 		System.out.println(totalList);
 		return "admin/booklist3";
 	}
@@ -137,12 +137,13 @@ public class BookController {
 	}
 	@RequestMapping("/goRentalCheck")
 	public String method21(Model model, BookDTO bdto, HttpServletRequest request) {
-		
+		String userID1 = request.getParameter("userID1");
+		System.out.println(userID1);
 		BookDAO bdao = new BookDAO();
 		List booklist = bdao.bookRentalList(bdto);
 		System.out.println(booklist);
 		request.setAttribute("bookList", booklist);
-		
+		request.setAttribute("userID1", userID1);
 		return "admin/rentalCheck";
 	}
 	
@@ -193,9 +194,7 @@ public class BookController {
 	
 	@RequestMapping("/bookUpdate")
 	public String method013(Model model, BookDTO bdto, HttpServletRequest request) {
-		System.out.println(1);
 		BookDAO bdao = new BookDAO();
-		System.out.println(bdto);
 		bdao.bookUpdate(bdto);
 		List booklist = bdao.booklist(bdto);
 		request.setAttribute("bookList", booklist);

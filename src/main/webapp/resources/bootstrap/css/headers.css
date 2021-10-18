@@ -95,3 +95,21 @@ a {
 	color: #FF0000;
 	font-weight: 500;
 }
+
+
+
+#coment{
+	text-align: center;
+	font-size:22px;
+	color:black;
+	margin-bottom:20px;
+	font-weight: 700;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+span{
+	font-weight: 800;
+}
+.page-breadcrumb{
+	color: #8C8C8C;
+	margin-bottom: 30px;
+	margin-right:10px;
